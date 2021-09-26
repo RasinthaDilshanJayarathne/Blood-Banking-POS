@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="activation">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/mail/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mail/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mail/techsoftemail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfoenix-8.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

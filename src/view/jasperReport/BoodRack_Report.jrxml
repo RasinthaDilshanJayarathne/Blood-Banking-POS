@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BoodRack_Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ccc0cc3-e206-4321-8918-c72c230260f6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC Connection"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from rack]]>
+	</queryString>
+	<field name="rId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rId"/>
+		<property name="com.jaspersoft.studio.field.label" value="rId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rack"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="blId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="blId"/>
+		<property name="com.jaspersoft.studio.field.label" value="blId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rack"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rack"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalQty" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="totalQty"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalQty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rack"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bloodGroup" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bloodGroup"/>
+		<property name="com.jaspersoft.studio.field.label" value="bloodGroup"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rack"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="231" splitType="Stretch">
+			<image>
+				<reportElement x="204" y="-20" width="147" height="140" uuid="304fb360-839f-428d-853a-04f46c60ac47"/>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/New folder/blood-donation-logo_23-2147506524.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="109" width="555" height="30" forecolor="#FC544E" uuid="63a314ce-ed05-4256-a300-eb020aa67002"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALL BLOOD DONOR REPORT]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="210" y="140" width="100" height="30" uuid="7c7460e0-b751-406b-8bf1-1f0ee7403e86"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="316" y="140" width="100" height="30" uuid="cf7b7019-6db7-4a59-a3df-0179a88e15ed"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="30" uuid="5095ce5b-9da7-4f26-a1e3-cc8dd4538424">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e85eee0-74ed-4327-983a-c1852b2ce48a"/>
+				</reportElement>
+				<box topPadding="7">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rack ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="30" uuid="c2d7c4c6-970e-411b-bbe5-d0dc61d82d3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0521578f-db8e-4ef9-8b31-a0867fbffa28"/>
+				</reportElement>
+				<box topPadding="7">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blood ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="30" uuid="a6420840-30eb-4e6e-92b7-19de0951d17f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fb16e94-fbb8-42c0-b04a-c87d8af8a1e0"/>
+				</reportElement>
+				<box topPadding="7">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rack Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="30" uuid="ff23c955-e0d3-4e9b-a3ff-6ebaa0fe53c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e27979f-dd8f-4370-b47b-0b4c08e59933"/>
+				</reportElement>
+				<box topPadding="7">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="30" uuid="9a943cc2-e3d2-4a70-987a-d8ef819ceca3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97a39381-097a-4606-b7b1-4c291cee2a4e"/>
+				</reportElement>
+				<box topPadding="7">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Blood Group]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="30" uuid="6a8658f8-3299-4fb0-8ffe-95dbeebd88fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e85eee0-74ed-4327-983a-c1852b2ce48a"/>
+				</reportElement>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="30" uuid="dc9b92d1-a3ad-407d-946e-0b53823e6dfb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0521578f-db8e-4ef9-8b31-a0867fbffa28"/>
+				</reportElement>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{blId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="30" uuid="3ed902b6-7902-490f-8dc0-ad601290457c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fb16e94-fbb8-42c0-b04a-c87d8af8a1e0"/>
+				</reportElement>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="30" uuid="06b857d5-3ddd-46e4-9c84-0b6660b86dd3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e27979f-dd8f-4370-b47b-0b4c08e59933"/>
+				</reportElement>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="30" uuid="e7a15fb6-37aa-4590-aa88-0963119d0a59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97a39381-097a-4606-b7b1-4c291cee2a4e"/>
+				</reportElement>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{bloodGroup}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

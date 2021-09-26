@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white;" styleClass="reception-task" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageOrderFormController">
+   <children>
+      <ImageView fitHeight="791.0" fitWidth="1092.0" layoutX="122.0" layoutY="3.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/manageOrders.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblOrder" layoutX="203.0" layoutY="314.0" opacity="0.9" prefHeight="402.0" prefWidth="1241.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="138.0" text="Hospital Id" />
+          <TableColumn fx:id="colName" prefWidth="267.0" text="Name" />
+            <TableColumn fx:id="colBType" prefWidth="212.0" text="Blood Type" />
+            <TableColumn fx:id="colOQty" prefWidth="179.0" text="Order Qty" />
+            <TableColumn fx:id="colDate" prefWidth="219.0" text="Order Date" />
+            <TableColumn fx:id="colTime" prefWidth="225.0" text="Order Time" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDelete" layoutX="1395.0" layoutY="233.0" mnemonicParsing="false" onAction="#deleteOrderOnAction" prefHeight="56.0" prefWidth="115.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" layoutX="1122.0" layoutY="231.0" mnemonicParsing="false" onAction="#addOrderOnAction" prefHeight="56.0" prefWidth="115.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" layoutX="1253.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateOrderOnAction" prefHeight="56.0" prefWidth="126.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPlaceOrder" layoutX="1225.0" layoutY="738.0" mnemonicParsing="false" onAction="#placeOrderOnAction" prefHeight="46.0" prefWidth="219.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Place Order" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="119.0" layoutY="56.0" prefHeight="58.0" prefWidth="285.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtOrderID" disable="true" layoutX="13.0" layoutY="12.0" prefHeight="39.0" prefWidth="265.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Order ID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1044.0" layoutY="56.0" prefHeight="58.0" prefWidth="215.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtOrderDate" disable="true" layoutX="13.0" layoutY="11.0" prefHeight="39.0" prefWidth="186.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1294.0" layoutY="56.0" prefHeight="58.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtOrderTime" disable="true" layoutX="13.0" layoutY="12.0" prefHeight="39.0" prefWidth="167.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Time">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="424.0" layoutY="144.0" prefHeight="58.0" prefWidth="285.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtName" disable="true" layoutX="13.0" layoutY="12.0" prefHeight="39.0" prefWidth="265.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Hospital Name">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1292.0" layoutY="144.0" opacity="0.9" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtAvailableQty" disable="true" layoutX="13.0" layoutY="12.0" opacity="0.9" prefHeight="39.0" prefWidth="186.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Available Qty">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="119.0" layoutY="144.0" prefHeight="58.0" prefWidth="281.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Hospital ID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbHospital" layoutX="12.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="735.0" layoutY="144.0" opacity="0.9" prefHeight="58.0" prefWidth="197.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Blood Type">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbBloodType" layoutX="12.0" layoutY="13.0" opacity="0.9" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="119.0" layoutY="230.0" prefHeight="58.0" prefWidth="281.0" style="-fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Order Qty">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtOrderQty" layoutX="11.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="186.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="962.0" layoutY="144.0" opacity="0.9" prefHeight="58.0" prefWidth="301.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Rack Name">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cmbBloodRackName" layoutX="15.0" layoutY="14.0" opacity="0.9" prefHeight="36.0" prefWidth="274.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="996.0" layoutY="231.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="56.0" prefWidth="109.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
