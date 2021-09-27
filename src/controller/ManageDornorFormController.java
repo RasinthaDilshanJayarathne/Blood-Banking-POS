@@ -13,12 +13,12 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.validation.ValidationUtil;
+import util.ValidationUtil;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import util.validation.controller.BloodRackController;
-import util.validation.controller.DonorController;
-import util.validation.controller.EmployeeController;
+import util.controller.BloodRackController;
+import util.controller.DonorController;
+import util.controller.EmployeeController;
 import view.tm.DonorTM;
 
 import java.sql.SQLException;
@@ -213,7 +213,6 @@ public class ManageDornorFormController {
 
             setDonorToTable(controller.getAllDonor());
             clear();
-
         }else{
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }

@@ -86,16 +86,16 @@
       </AnchorPane>
       <AnchorPane layoutX="825.0" layoutY="50.0" opacity="0.9" prefHeight="59.0" prefWidth="638.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
-            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Description">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
             <TextField fx:id="txtDescription" layoutX="20.0" layoutY="11.0" onKeyReleased="#textFields_Key_Released" prefHeight="44.0" prefWidth="603.0" promptText="Enter Description" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Description">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="tblBlood" layoutX="209.0" layoutY="331.0" opacity="0.9" prefHeight="380.0" prefWidth="1203.0" stylesheets="@../styles/style.css">

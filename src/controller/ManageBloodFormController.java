@@ -12,12 +12,12 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.validation.ValidationUtil;
+import util.ValidationUtil;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import util.validation.controller.BloodController;
+import util.controller.BloodController;
 import view.tm.BloodTM;
 
 import java.io.IOException;
@@ -75,7 +75,6 @@ public class ManageBloodFormController {
                 search(newValue);
             }
         });
-
     }
 
     private void setBloodToTable(ArrayList<Blood> allBloods) {
@@ -118,6 +117,7 @@ public class ManageBloodFormController {
             if (controller.deleteBlood(txtBloodID.getText())) ;
 
             new Alert(Alert.AlertType.INFORMATION, "Deleted").show();
+
             clear();
             setBloodToTable(controller.getAllBlood());
         } else{
@@ -136,7 +136,6 @@ public class ManageBloodFormController {
 
             setBloodToTable(controller.getAllBlood());
             clear();
-
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again..").show();
         }
@@ -153,7 +152,6 @@ public class ManageBloodFormController {
 
             setBloodToTable(controller.getAllBlood());
             clear();
-
         }else{
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }

@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.validation.controller.DonationController;
+import util.controller.DonationController;
 import view.tm.StoreDetailTM;
 
 import java.sql.SQLException;

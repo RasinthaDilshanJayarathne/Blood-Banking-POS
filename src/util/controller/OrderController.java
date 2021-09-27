@@ -1,14 +1,12 @@
-package util.validation.controller;
+package util.controller;
 
 
 import db.DbConnection;
-import model.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class OrderController {
     public String getOrderId() throws SQLException, ClassNotFoundException {
@@ -44,6 +42,57 @@ public class OrderController {
         ResultSet rst = stm.executeQuery();
         if (rst.next()){
             return rst.getString("SUM(dn.QtyOnHand)");
+        }
+        return null;
+    }
+
+    private boolean updateQty(String rackId, Integer quantity,String nic,String date) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement("UPDATE  `Donate Detail` SET totalQty=totalQty-? WHERE rId=? AND nic=? AND date=?");
+        preparedStatement.setObject(1,quantity);
+        preparedStatement.setObject(2,rackId);
+        preparedStatement.setObject(3,nic);
+        preparedStatement.setObject(4,date);
+        return preparedStatement.executeUpdate()>0;
+    }
+
+    public String updateNewAvalibilityQty(String name, String qty, String type) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement stm = con.prepareStatement(" SELECT r.rId FROM Rack r WHERE r.name =?");
+        stm.setObject(1,name);
+        ResultSet rst=stm.executeQuery();
+
+        String rackID=null;
+        if (rst.next()){
+            System.out.println("1");
+            rackID=rst.getString(1);
+        }
+        stm = con.prepareStatement(" SELECT b.blId FROM Blood b WHERE b.bloodGroup =?");
+        stm.setObject(1,type);
+        ResultSet rst1=stm.executeQuery();
+
+        String bloodID=null;
+        if (rst1.next()){
+            System.out.println("2");
+            bloodID=rst1.getString(1);
+        }
+
+        stm=con.prepareStatement("UPDATE Rack r LEFT JOIN `donate detail` dn ON dn.rId = r.rId SET dn.QtyOnHand =(dn.QtyOnHand-?) WHERE dn.blId =? AND dn.rId =?");
+        stm.setObject(1,qty);
+        stm.setObject(2,bloodID);
+        stm.setObject(3,rackID);
+
+        if (stm.executeUpdate()>0) {
+            System.out.println("3");
+            stm=con.prepareStatement("SELECT QtyOnHand FROM `donate detail` dn WHERE dn.blId =? AND dn.rId =?");
+            stm.setObject(1,bloodID);
+            stm.setObject(2,rackID);
+
+            ResultSet rst2=stm.executeQuery();
+            if (rst2.next()){
+                System.out.println("4");
+                return rst2.getString(1);
+            }
         }
         return null;
     }

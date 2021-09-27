@@ -5,17 +5,19 @@ public class CartTM {
     private String hospitalName;
     private String blType;
     private int orderQty;
+    private String rackName;
     private String date;
     private String time;
 
     public CartTM() {
     }
 
-    public CartTM(String hospitalId, String hospitalName, String blType, int orderQty, String date, String time) {
+    public CartTM(String hospitalId, String hospitalName, String blType, int orderQty, String rackName, String date, String time) {
         this.setHospitalId(hospitalId);
         this.setHospitalName(hospitalName);
         this.setBlType(blType);
         this.setOrderQty(orderQty);
+        this.setRackName(rackName);
         this.setDate(date);
         this.setTime(time);
     }
@@ -52,6 +54,14 @@ public class CartTM {
         this.orderQty = orderQty;
     }
 
+    public String getRackName() {
+        return rackName;
+    }
+
+    public void setRackName(String rackName) {
+        this.rackName = rackName;
+    }
+
     public String getDate() {
         return date;
     }
@@ -75,6 +85,7 @@ public class CartTM {
                 ", hospitalName='" + hospitalName + '\'' +
                 ", blType='" + blType + '\'' +
                 ", orderQty=" + orderQty +
+                ", rackName='" + rackName + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 '}';

@@ -10,8 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import model.User;
-import util.validation.ValidationUtil;
-import util.validation.controller.UserController;
+import util.ValidationUtil;
+import util.controller.UserController;
 import view.tm.UserTM;
 
 import java.sql.SQLException;
@@ -112,7 +112,6 @@ public class SystemUserFormController {
 
             setUserToTable(controller.getAllUser());
             clear();
-
         }else{
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }
@@ -129,7 +128,6 @@ public class SystemUserFormController {
 
             setUserToTable(controller.getAllUser());
             clear();
-
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again..").show();
         }

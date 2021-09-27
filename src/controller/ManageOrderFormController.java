@@ -12,16 +12,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Hospital;
-import util.validation.ValidationUtil;
-import util.validation.controller.BloodRackController;
-import util.validation.controller.HospitalController;
-import util.validation.controller.OrderController;
+import util.ValidationUtil;
+import util.controller.BloodRackController;
+import util.controller.HospitalController;
+import util.controller.OrderController;
 import view.tm.CartTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -78,16 +79,37 @@ public class ManageOrderFormController {
 
         cmbBloodRackName.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                txtAvailableQty.setText(controller.getAvailability(newValue));
+               // updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
+                if (!(controller.getAvailability(newValue) ==null)){
+                    txtAvailableQty.setText(controller.getAvailability(newValue));
+                    int i = updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
+                    txtAvailableQty.setText(String.valueOf(i));
+                }else {
+
+                }
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
         txtOrderQty.textProperty().addListener((observable, oldValue, newValue) -> {
             loadDateTime();
+        });
+
+        cmbBloodType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                name.clear();
+                name=new BloodRackController().loadRackNameByBloodType(newValue,name);
+                cmbBloodRackName.getItems().clear();
+                cmbBloodRackName.setItems((FXCollections.observableArrayList(name)));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -130,7 +152,6 @@ public class ManageOrderFormController {
         }
     }
 
-
     public void getHospitalIds() throws SQLException, ClassNotFoundException {
         List<String> hospitalIds = new HospitalController().getHospitalIds();
         cmbHospital.getItems().addAll(FXCollections.observableArrayList(hospitalIds));
@@ -143,16 +164,15 @@ public class ManageOrderFormController {
         }catch (Exception e){
 
         }
-
     }
     private void hospitalBloodType() throws SQLException, ClassNotFoundException {
         List<String> bloodType = BloodRackController.getBloodType();
         cmbBloodType.getItems().addAll(FXCollections.observableArrayList(bloodType));
     }
-
+    List<String>name =new ArrayList<>();
     private void loadRackName() throws SQLException, ClassNotFoundException {
-        List<String> userID = BloodRackController.getBloodRackName();
-        cmbBloodRackName.getItems().addAll(userID);
+        name = BloodRackController.getBloodRackName();
+        cmbBloodRackName.getItems().addAll(name);
     }
 
     private void storeValidations() {
@@ -192,23 +212,47 @@ public class ManageOrderFormController {
 
     }
     private void clearOne(){
-       cmbBloodType.getSelectionModel().clearSelection();cmbBloodRackName.getSelectionModel().clearSelection();
-       txtAvailableQty.clear();txtOrderQty.clear();
+        try {
+            cmbBloodType.getSelectionModel().clearSelection();cmbBloodRackName.getSelectionModel().clearSelection();
+            txtAvailableQty.clear();txtOrderQty.clear();
+        }catch (Exception e){
+
+        }
     }
 
     public void deleteOrderOnAction(ActionEvent actionEvent) {
-
     }
+
+    private int updateAvailabilityQty(int availableQty){
+        System.out.println(cmbBloodRackName.getValue());
+        int orderQtyList;
+        for (CartTM temp:obList) {
+            if (cmbBloodType.getValue().equals(temp.getBlType()) && cmbBloodRackName.getValue().equals(temp.getRackName())){
+                orderQtyList = temp.getOrderQty();
+                availableQty=availableQty-orderQtyList;
+               // txtAvailableQty.setText(String.valueOf(availableQty));
+            }/*else {
+                System.out.println("BBBBB");
+                txtAvailableQty.setText(String.valueOf(availableQty));
+            }*/
+        }
+        return availableQty;
+    }
+
     ObservableList<CartTM> obList= FXCollections.observableArrayList();
     public void addOrderOnAction(ActionEvent actionEvent) {
+
         String hId = cmbHospital.getSelectionModel().getSelectedItem();
         String hName=txtName.getText();
         String blType = cmbBloodType.getSelectionModel().getSelectedItem();
         int availableQty= Integer.parseInt(txtAvailableQty.getText());
-       // String rName = cmbBloodRackName.getSelectionModel().getSelectedItem();
+        System.out.println("DDDDDDD="+availableQty);
+        String rackName = cmbBloodRackName.getSelectionModel().getSelectedItem();
         int orderQty = Integer.parseInt(txtOrderQty.getText());
         String date=txtOrderDate.getText();
         String time=txtOrderTime.getText();
+
+        updateAvailabilityQty(availableQty);
 
         if (availableQty<orderQty){
             new Alert(Alert.AlertType.WARNING,"Invalid QTY").show();
@@ -220,6 +264,7 @@ public class ManageOrderFormController {
                 hName,
                 blType,
                 orderQty,
+                rackName,
                 date,
                 time
 
@@ -237,6 +282,7 @@ public class ManageOrderFormController {
                     temp.getHospitalName(),
                     temp.getBlType(),
                     temp.getOrderQty()+orderQty,
+                    temp.getRackName(),
                     temp.getDate(),
                     temp.getTime()
             );
@@ -245,6 +291,15 @@ public class ManageOrderFormController {
             obList.add(newTm);
         }
         tblOrder.setItems(obList);
+
+       /* try {
+            String newAvailabitlity=new OrderController().updateNewAvalibilityQty(cmbBloodRackName.getValue(),txtOrderQty.getText(),cmbBloodType.getValue());
+            txtAvailableQty.setText(newAvailabitlity);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }*/
         clearOne();
         cmbHospital.setDisable(true);
         txtName.setDisable(true);
@@ -305,6 +360,5 @@ public class ManageOrderFormController {
         }else{
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }*/
-
     }
 }

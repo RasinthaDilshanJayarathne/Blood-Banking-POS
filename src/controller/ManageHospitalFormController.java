@@ -13,10 +13,10 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.validation.ValidationUtil;
+import util.ValidationUtil;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import util.validation.controller.HospitalController;
+import util.controller.HospitalController;
 import view.tm.HospitalTM;
 
 import java.sql.SQLException;
@@ -124,7 +124,6 @@ public class ManageHospitalFormController {
         if (result.orElse(no) == yes) {
             if (controller.deleteHospital(txtHospitalID.getText())) ;
             clear();
-
         } else{
             new Alert(Alert.AlertType.ERROR, "Try Again").show();
         }
@@ -139,7 +138,6 @@ public class ManageHospitalFormController {
 
         if (controller.updateHospital(h1)) {
             clear();
-
         }else{
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }
@@ -184,7 +182,6 @@ public class ManageHospitalFormController {
 
         if(controller.saveHospital(h1)) {
             clear();
-
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again..").show();
         }

@@ -214,3 +214,21 @@ FROM  Rack r LEFT JOIN `Donate Detail` dn ON r.rId = dn.rId GROUP BY r.rId LIKE 
 
 SELECT r.bloodGroup, r.rId, r.name, r.totalQty,dn.totalQty
 FROM  Rack r LEFT JOIN `Donate Detail` dn ON r.rId = dn.rId r.rId LIKE '%"+value+"%' or name LIKE '%"+value+"%';
+
+-------------------------------------------------------------------------
+
+UPDATE `donate detail` SET `donate detail`.QtyOnHand=QtyOnHand-2 FROM `donate detail` LEFT JOIN Rack ON Rack.rId = `donate detail`.rId WHERE name="O-positive-i";
+
+UPDATE `donate detail` SET `donate detail`.QtyOnHand=QtyOnHand-2 FROM `donate detail` LEFT JOIN Rack ON Rack.rId=`donate detail`.rId WHERE name="O-positive-i";
+
+UPDATE Rack r LEFT JOIN `donate detail` dn ON dn.rId = dn.rid SET dn.QtyOnHand =? WHERE dn.blId =? AND dn.rId =?;
+
+
+
+
+UPDATE Rack r
+     LEFT JOIN `donate detail` dn
+     ON r.rId = dn.rId
+     SET dn.QtyOnHand = 5
+         WHERE dn.blId = 'B00-0005'
+     AND dn.rId = 'R00-0005';

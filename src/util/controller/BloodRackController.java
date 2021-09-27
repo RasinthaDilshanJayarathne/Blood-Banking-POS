@@ -1,4 +1,4 @@
-package util.validation.controller;
+package util.controller;
 
 import db.DbConnection;
 import javafx.scene.chart.XYChart;
@@ -167,5 +167,18 @@ public class BloodRackController {
             series.getData().add(new XYChart.Data<>(resultSet.getString(1),resultSet.getInt(2)));
         }
         return series;
+    }
+
+    public List<String> loadRackNameByBloodType(String bloodType, List<String> name) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = con.prepareStatement("SELECT name FROM Rack WHERE bloodGroup=?");
+        pstm.setObject(1,bloodType);
+        ResultSet rst = pstm.executeQuery();
+
+        while (rst.next()){
+            name.add(rst.getString(1));
+
+        }
+        return name;
     }
 }

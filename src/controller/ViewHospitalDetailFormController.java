@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Hospital;
-import util.validation.controller.HospitalController;
+import util.controller.HospitalController;
 import view.tm.HospitalTM;
 
 import java.sql.SQLException;
@@ -62,6 +62,7 @@ public class ViewHospitalDetailFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+        search(txtSearch.getText());
     }
 
     private void search(String value){

@@ -3,10 +3,10 @@ package controller;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Label;
-import util.validation.controller.DonationController;
-import util.validation.controller.DonorController;
-import util.validation.controller.EmployeeController;
-import util.validation.controller.HospitalController;
+import util.controller.DonationController;
+import util.controller.DonorController;
+import util.controller.EmployeeController;
+import util.controller.HospitalController;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

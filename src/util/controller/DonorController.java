@@ -1,4 +1,4 @@
-package util.validation.controller;
+package util.controller;
 
 
 import db.DbConnection;

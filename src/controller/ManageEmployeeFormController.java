@@ -13,10 +13,10 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.validation.ValidationUtil;
+import util.ValidationUtil;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import util.validation.controller.EmployeeController;
+import util.controller.EmployeeController;
 import view.tm.EmployeeTM;
 
 import java.sql.SQLException;

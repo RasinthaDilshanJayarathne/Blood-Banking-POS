@@ -14,10 +14,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.*;
-import util.validation.ValidationUtil;
-import util.validation.controller.BloodRackController;
-import util.validation.controller.DonationController;
-import util.validation.controller.DonorController;
+import util.ValidationUtil;
+import util.controller.BloodRackController;
+import util.controller.DonationController;
+import util.controller.DonorController;
 import view.tm.*;
 
 import java.io.IOException;
@@ -198,7 +198,6 @@ public class ManageDonateFormController extends StoreDetail {
                     new StoreDetailTM(e.getBlId(),e.getBloodGroup(),e.getRackId(),e.getRackName(),e.getSpace(),e.getQty()));
         });
         tblBloodRack.setItems(obList);
-
     }
 
 
@@ -213,10 +212,6 @@ public class ManageDonateFormController extends StoreDetail {
 
     public void donateOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         saveDonateDetail();
-        //initBloodRack();
-        //setDonateDetailToTable(controller.getAllStoreDetail());
-        sendMail();
-        updateRowQty();
         clear();
         setDonateDetailToTable(controller.getAllDetail());
 
@@ -232,14 +227,19 @@ public class ManageDonateFormController extends StoreDetail {
     }
 
     public void saveDonateDetail() throws SQLException, ClassNotFoundException {
-        DonateDetail donateDetail= new DonateDetail(
-                txtBloodID.getText(),txtRackID.getText(),cmbRackNo.getValue().toString(),txtDonID.getText(),txtDonateDate.getText(),txtDonateTime.getText(),Integer.parseInt(txtDonateQTY.getText()),Integer.parseInt(txtAvailableQty.getText())
-        );
-
-        if (new DonorController().saveDonateDetail(donateDetail)){
-            new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
-        }else{
-            new Alert(Alert.AlertType.WARNING, "Try Again").show();
+        if (updateRowQty()==true){
+            DonateDetail donateDetail= new DonateDetail(
+                    txtBloodID.getText(),txtRackID.getText(),cmbRackNo.getValue().toString(),txtDonID.getText(),txtDonateDate.getText(),txtDonateTime.getText(),Integer.parseInt(txtDonateQTY.getText()),Integer.parseInt(txtAvailableQty.getText())
+            );
+            if (new DonorController().saveDonateDetail(donateDetail)){
+                try {
+                    sendMail();
+                    updateRowQty();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
+            }
         }
     }
 
@@ -250,7 +250,7 @@ public class ManageDonateFormController extends StoreDetail {
     }
 
     //----------------------------------------------------------------------------------------
-    public void updateRowQty() {
+    public boolean updateRowQty() {
         int qtyOnHand = Integer.parseInt(txtAvailableQty.getText());
         int donateQty = Integer.parseInt(txtDonateQTY.getText()+"");
         String blId=txtBloodID.getText();
@@ -260,8 +260,8 @@ public class ManageDonateFormController extends StoreDetail {
 
         if (qtyOnHand<donateQty){
             new Alert(Alert.AlertType.WARNING,"Invalid Quantity").show();
-            return;
-        }
+            return false;
+        }else {
             StoreDetailTM tm = new StoreDetailTM(
                     blId,
                     bloodGroup,
@@ -271,24 +271,24 @@ public class ManageDonateFormController extends StoreDetail {
                     donateQty
             );
 
-            int rowNumber=isExists(tm);
+            int rowNumber = isExists(tm);
             //System.out.println(rowNumber);
 
-            if (rowNumber==-1){
+            if (rowNumber == -1) {
                 // new Add
                 obList.add(tm);
-            }else{
+            } else {
                 // update
                 StoreDetailTM temp = obList.get(rowNumber);
 
-                if(temp.getSpace()<donateQty){
+                if (temp.getSpace() < donateQty) {
                     StoreDetailTM newTm = new StoreDetailTM(
                             temp.getBlId(),
                             temp.getBloodGroup(),
                             temp.getRackName(),
                             temp.getRackId(),
                             temp.getSpace(),
-                            temp.getQty()+donateQty
+                            temp.getQty() + donateQty
                     );
 
                     obList.remove(rowNumber);
@@ -302,9 +302,11 @@ public class ManageDonateFormController extends StoreDetail {
             //tblBloodRack.getItems().clear();
             tblBloodRack.setItems(obList);
             tblBloodRack.refresh();
-            if (!obList.isEmpty()){
+            if (!obList.isEmpty()) {
                 btnDonate.setDisable(false);
             }
+        }
+        return true;
     }
 
     private int isExists(StoreDetailTM tm) {
