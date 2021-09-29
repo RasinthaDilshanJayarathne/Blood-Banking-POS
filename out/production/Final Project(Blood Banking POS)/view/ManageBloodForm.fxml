@@ -50,7 +50,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button alignment="CENTER_RIGHT" layoutX="405.0" layoutY="56.0" mnemonicParsing="false" onAction="#serachOnAction" opacity="0.9" prefHeight="48.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+      <Button alignment="CENTER_RIGHT" layoutX="405.0" layoutY="56.0" mnemonicParsing="false" onAction="#serachOnAction" opacity="0.9" prefHeight="60.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -90,47 +90,47 @@
             <TableColumn fx:id="colBloodDescription" prefWidth="830.0" text="Description" />
          </columns>
       </TableView>
-      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1333.0" layoutY="162.0" mnemonicParsing="false" onAction="#deleteBloodOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1333.0" layoutY="162.0" mnemonicParsing="false" onAction="#deleteBloodOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="1053.0" layoutY="161.0" mnemonicParsing="false" onAction="#saveBloodOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+      <Button fx:id="btnAdd" alignment="CENTER" layoutX="1053.0" layoutY="161.0" mnemonicParsing="false" onAction="#saveBloodOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="        Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1193.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateBloodOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1193.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateBloodOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button alignment="CENTER_RIGHT" layoutX="913.0" layoutY="161.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="913.0" layoutY="161.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="        Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1201.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1198.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/button/update.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1065.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1065.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/button/add.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="925.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="925.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/button/clean.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1344.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1344.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/button/delete.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="412.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="412.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/button/search.png" />
          </image>
