@@ -146,36 +146,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="571.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="52.0" prefWidth="125.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="1409.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="56.0" prefWidth="116.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAdd" layoutX="1124.0" layoutY="155.0" mnemonicParsing="false" onAction="#saveDonorOnAction" prefHeight="56.0" prefWidth="116.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button layoutX="1262.0" layoutY="155.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="56.0" prefWidth="125.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button layoutX="1266.0" layoutY="738.0" mnemonicParsing="false" onAction="#printDonorDetailOnAction" opacity="0.9" prefHeight="46.0" prefWidth="253.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Print" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="980.0" layoutY="153.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="56.0" prefWidth="121.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
       <TableView fx:id="tblDonor" layoutX="39.0" layoutY="332.0" prefHeight="394.0" prefWidth="1528.0" styleClass="table-row-cell" stylesheets="@../styles/style.css">
         <columns>
           <TableColumn fx:id="colUserID" prefWidth="130.0" text="User ID" />
@@ -204,5 +174,65 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1395.0" layoutY="159.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="1115.0" layoutY="158.0" mnemonicParsing="false" onAction="#saveDonorOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1255.0" layoutY="159.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="975.0" layoutY="158.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1263.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1127.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="987.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1406.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1355.0" layoutY="738.0" mnemonicParsing="false" onAction="#printDonorDetailOnAction" opacity="0.9" prefHeight="46.0" prefWidth="212.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="       Print" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="566.0" layoutY="56.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="48.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="573.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/search.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1383.0" layoutY="743.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -17,7 +17,7 @@
             <Image url="@../assets/Management.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblHospital" layoutX="173.0" layoutY="329.0" opacity="0.9" prefHeight="392.0" prefWidth="1301.0" stylesheets="@../styles/style.css">
+      <TableView fx:id="tblHospital" layoutX="140.0" layoutY="329.0" opacity="0.9" prefHeight="392.0" prefWidth="1334.0" stylesheets="@../styles/style.css">
          <columns>
             <TableColumn fx:id="colID" prefWidth="126.99996948242188" text="Id" />
             <TableColumn fx:id="colName" prefWidth="185.00003051757812" text="Name" />
@@ -25,25 +25,10 @@
             <TableColumn fx:id="colCity" prefWidth="166.0" text="City" />
             <TableColumn fx:id="colPhoneNo" prefWidth="184.0" text="Phone No" />
             <TableColumn fx:id="colEmail" prefWidth="208.0" text="Email" />
-            <TableColumn fx:id="colWebSite" prefWidth="245.0" text="Web Site" />
+            <TableColumn fx:id="colWebSite" prefWidth="277.0" text="Web Site" />
          </columns>
       </TableView>
-      <Button fx:id="btnDelete" layoutX="1368.0" layoutY="154.0" mnemonicParsing="false" onAction="#deleteHospitalOnAction" prefHeight="56.0" prefWidth="118.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAdd" layoutX="1097.0" layoutY="154.0" mnemonicParsing="false" onAction="#saveHospitalOnAction" prefHeight="56.0" prefWidth="105.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnUpdate" layoutX="1220.0" layoutY="154.0" mnemonicParsing="false" onAction="#updateHospitalOnAction" prefHeight="56.0" prefWidth="129.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="490.0" layoutY="263.0" opacity="0.9" prefHeight="52.0" prefWidth="602.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 2;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="502.0" layoutY="263.0" opacity="0.9" prefHeight="52.0" prefWidth="602.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 2;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtSearch" layoutX="13.0" layoutY="9.0" onAction="#searchHospitalOnAction" prefHeight="39.0" prefWidth="574.0" style="-fx-background-color: white;" styleClass="textField">
                <font>
@@ -57,12 +42,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="1221.0" layoutY="736.0" mnemonicParsing="false" onAction="#printHospitalOnAction" opacity="0.9" prefHeight="46.0" prefWidth="253.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Print" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="153.0" layoutY="51.0" prefHeight="58.0" prefWidth="139.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="133.0" layoutY="51.0" prefHeight="58.0" prefWidth="139.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtHospitalID" layoutX="13.0" layoutY="13.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="129.0" promptText="H00-0001" style="-fx-background-color: white;" styleClass="textField">
                <font>
@@ -76,11 +56,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="322.0" layoutY="51.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="52.0" prefWidth="105.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
       <AnchorPane layoutX="450.0" layoutY="51.0" prefHeight="58.0" prefWidth="161.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtHospitalName" layoutX="13.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="142.0" promptText="Asiri" style="-fx-background-color: white;" styleClass="textField">
@@ -151,24 +126,79 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="153.0" layoutY="153.0" prefHeight="58.0" prefWidth="276.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="133.0" layoutY="153.0" prefHeight="58.0" prefWidth="276.0" style="-fx-background-color: white;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtHospitalWebSite" layoutX="13.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="253.0" promptText="www.AsiriHospital.com" style="-fx-background-color: white;" styleClass="textField">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Label layoutX="2.0" layoutY="-13.0" opacity="0.9" style="-fx-background-color: white;" styleClass="textLabel" text="Web Site">
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Web Site">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="958.0" layoutY="154.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="56.0" prefWidth="121.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+      <Button layoutX="1263.0" layoutY="738.0" mnemonicParsing="false" onAction="#printHospitalOnAction" opacity="0.9" prefHeight="46.0" prefWidth="212.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="       Print" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="299.0" layoutY="56.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="48.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1360.0" layoutY="154.0" mnemonicParsing="false" onAction="#deleteHospitalOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="153.0" mnemonicParsing="false" onAction="#saveHospitalOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1220.0" layoutY="154.0" mnemonicParsing="false" onAction="#updateHospitalOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="940.0" layoutY="153.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1228.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1092.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="952.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1371.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="306.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/search.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1288.0" layoutY="742.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

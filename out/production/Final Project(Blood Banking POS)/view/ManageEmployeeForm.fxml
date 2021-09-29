@@ -32,11 +32,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="1284.0" layoutY="738.0" mnemonicParsing="false" onAction="#printEmployeeOnAction" opacity="0.9" prefHeight="46.0" prefWidth="253.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Print" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
       <AnchorPane layoutX="355.0" layoutY="51.0" prefHeight="58.0" prefWidth="154.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtEmployeeID" layoutX="13.0" layoutY="14.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="125.0" promptText="E00-0001" style="-fx-background-color: white;" styleClass="textField">
@@ -141,31 +136,6 @@
             <ComboBox fx:id="cmbGender" layoutX="12.0" layoutY="12.0" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
          </children>
       </AnchorPane>
-      <Button fx:id="btnDelete" layoutX="1373.0" layoutY="146.0" mnemonicParsing="false" onAction="#deleteEmployeeOnAction" prefHeight="56.0" prefWidth="117.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAdd" layoutX="1093.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveEmployeeOnAction" prefHeight="56.0" prefWidth="117.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnUpdate" layoutX="1229.0" layoutY="146.0" mnemonicParsing="false" onAction="#updateEmployeeOnAction" prefHeight="56.0" prefWidth="125.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button layoutX="533.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchEmployeeOnAction" opacity="0.9" prefHeight="52.0" prefWidth="125.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="952.0" layoutY="146.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="56.0" prefWidth="121.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
       <TableView fx:id="tblEmployee" layoutX="120.0" layoutY="332.0" prefHeight="394.0" prefWidth="1417.0" styleClass="table-row-cell" stylesheets="@../styles/style.css">
         <columns>
           <TableColumn fx:id="colUserID" prefWidth="150.0" text="User ID" />
@@ -178,5 +148,65 @@
             <TableColumn fx:id="colGender" prefWidth="139.0" text="Gender" />
         </columns>
       </TableView>
+      <Button layoutX="1324.0" layoutY="738.0" mnemonicParsing="false" onAction="#printEmployeeOnAction" opacity="0.9" prefHeight="46.0" prefWidth="212.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="       Print" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="531.0" layoutY="56.0" mnemonicParsing="false" onAction="#searchEmployeeOnAction" opacity="0.9" prefHeight="48.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1362.0" layoutY="160.0" mnemonicParsing="false" onAction="#deleteEmployeeOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="1082.0" layoutY="159.0" mnemonicParsing="false" onAction="#saveEmployeeOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1222.0" layoutY="160.0" mnemonicParsing="false" onAction="#updateEmployeeOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER_RIGHT" layoutX="942.0" layoutY="159.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="48.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1230.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1094.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="954.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1373.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="538.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/search.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1349.0" layoutY="742.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

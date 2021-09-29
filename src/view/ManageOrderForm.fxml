@@ -13,34 +13,35 @@
 
 <AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white;" styleClass="reception-task" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageOrderFormController">
    <children>
-      <ImageView fitHeight="791.0" fitWidth="1092.0" layoutX="122.0" layoutY="3.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="782.0" fitWidth="1087.0" layoutX="151.0" layoutY="14.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/manageOrders.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblOrder" layoutX="203.0" layoutY="314.0" opacity="0.9" prefHeight="402.0" prefWidth="1241.0">
+      <TableView fx:id="tblOrder" layoutX="121.0" layoutY="314.0" opacity="0.9" prefHeight="402.0" prefWidth="1389.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="138.0" text="Hospital Id" />
-          <TableColumn fx:id="colName" prefWidth="267.0" text="Name" />
-            <TableColumn fx:id="colBType" prefWidth="212.0" text="Blood Type" />
-            <TableColumn fx:id="colOQty" prefWidth="179.0" text="Order Qty" />
-            <TableColumn fx:id="colDate" prefWidth="219.0" text="Order Date" />
-            <TableColumn fx:id="colTime" prefWidth="225.0" text="Order Time" />
+          <TableColumn fx:id="colName" prefWidth="236.0" text="Name" />
+            <TableColumn fx:id="colBType" prefWidth="195.0" text="Blood Type" />
+            <TableColumn fx:id="colRackName" prefWidth="201.0" text="Rack Name" />
+            <TableColumn fx:id="colOQty" prefWidth="214.0" text="Order Qty" />
+            <TableColumn fx:id="colDate" prefWidth="211.0" text="Order Date" />
+            <TableColumn fx:id="colTime" prefWidth="193.0" text="Order Time" />
         </columns>
       </TableView>
-      <Button fx:id="btnDelete" layoutX="1395.0" layoutY="233.0" mnemonicParsing="false" onAction="#deleteOrderOnAction" prefHeight="56.0" prefWidth="115.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1386.0" layoutY="239.0" mnemonicParsing="false" onAction="#deleteOrderOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnAdd" layoutX="1122.0" layoutY="231.0" mnemonicParsing="false" onAction="#addOrderOnAction" prefHeight="56.0" prefWidth="115.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
+      <Button fx:id="btnAdd" alignment="CENTER" layoutX="1106.0" layoutY="238.0" mnemonicParsing="false" onAction="#addOrderOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="      Add" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="1253.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateOrderOnAction" prefHeight="56.0" prefWidth="126.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1246.0" layoutY="239.0" mnemonicParsing="false" onAction="#updateOrderOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
       <Button fx:id="btnPlaceOrder" layoutX="1225.0" layoutY="738.0" mnemonicParsing="false" onAction="#placeOrderOnAction" prefHeight="46.0" prefWidth="219.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Place Order" textFill="WHITE">
@@ -128,14 +129,14 @@
             <ComboBox fx:id="cmbHospital" layoutX="12.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="735.0" layoutY="144.0" opacity="0.9" prefHeight="58.0" prefWidth="197.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="735.0" layoutY="144.0" opacity="0.97" prefHeight="58.0" prefWidth="197.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Blood Type">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbBloodType" layoutX="12.0" layoutY="13.0" opacity="0.9" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
+            <ComboBox fx:id="cmbBloodType" layoutX="12.0" layoutY="13.0" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="119.0" layoutY="230.0" prefHeight="58.0" prefWidth="281.0" style="-fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
@@ -162,10 +163,30 @@
             <ComboBox fx:id="cmbBloodRackName" layoutX="15.0" layoutY="14.0" opacity="0.9" prefHeight="36.0" prefWidth="274.0" style="-fx-background-color: white;" styleClass="combo" stylesheets="@../styles/style.css" />
          </children>
       </AnchorPane>
-      <Button layoutX="996.0" layoutY="231.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="56.0" prefWidth="109.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="966.0" layoutY="238.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="       Clear" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1254.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1118.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="978.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1397.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

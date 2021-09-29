@@ -36,6 +36,23 @@ public class DonationController {
         return storeDetails;
     }
 
+    public ArrayList<StoreDetail> getAllDonateDetail() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM `Donate Detail`");
+        ResultSet rst = stm.executeQuery();
+        ArrayList<StoreDetail> storeDetails = new ArrayList<>();
+        while (rst.next()) {
+            storeDetails.add(new StoreDetail(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getString(4),
+                    rst.getInt(5),
+                    rst.getInt(6)
+            ));
+        }
+        return storeDetails;
+    }
+
     public XYChart.Series<String, Integer> setUpBarChartFromDatabase() throws SQLException, ClassNotFoundException {
         XYChart.Series<String,Integer> series=new XYChart.Series<>();
         PreparedStatement statement = DbConnection.getInstance().getConnection().

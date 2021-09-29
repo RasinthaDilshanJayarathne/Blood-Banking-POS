@@ -107,4 +107,20 @@ public class Donor {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Donor{" +
+                "nic='" + nic + '\'' +
+                ", userID='" + userID + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", type='" + type + '\'' +
+                ", blID='" + blID + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

@@ -91,4 +91,42 @@ public class UserController {
         }
         return user;
     }
+
+    /*public User getLoginUser(String userName, String password) throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance()
+                .getConnection().prepareStatement("SELECT * FROM Users WHERE userName=? AND password=?");
+        stm.setObject(1, userName);
+        stm.setObject(2, password);
+
+        ResultSet rst = stm.executeQuery();
+        while (rst.next()) {
+            return new User(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getString(4)
+            );
+
+        }
+            return null;
+    }*/
+
+    public User getLoginUser(String userName, String password) throws SQLException, ClassNotFoundException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement
+                ("SELECT * FROM Users WHERE userName= ? AND password= ?");
+        statement.setObject(1, userName);
+        statement.setObject(2, password);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            return new User(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4)
+            );
+        }
+        return null;
+    }
+
 }

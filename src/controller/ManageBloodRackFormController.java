@@ -43,6 +43,9 @@ public class ManageBloodRackFormController {
     public ComboBox<String> cmbBloodType;
     public BarChart<String,Integer> employeeBarChart;
     public TextField txtBloodID;
+    public Button btnDelete;
+    public Button btnUpdate;
+    public TableColumn colStoreQty;
 
     private BloodRackController controller=new BloodRackController();
 

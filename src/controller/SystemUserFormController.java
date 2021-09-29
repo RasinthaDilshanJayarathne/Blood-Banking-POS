@@ -15,10 +15,7 @@ import util.controller.UserController;
 import view.tm.UserTM;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class SystemUserFormController {
@@ -33,6 +30,8 @@ public class SystemUserFormController {
     public TableColumn colUserType;
     public TextField txtUserType;
     public TextField txtSearchUser;
+    public Button btnDelete;
+    public Button btnUpdate;
 
     private UserController controller=new UserController();
 
@@ -52,7 +51,7 @@ public class SystemUserFormController {
         try {
             colUserID.setCellValueFactory(new PropertyValueFactory<>("id"));
             colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-            colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+           // colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
             colUserType.setCellValueFactory(new PropertyValueFactory<>("type"));
 
             setUserToTable(controller.getAllUser());
@@ -120,8 +119,13 @@ public class SystemUserFormController {
     public void saveDonorOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         btnAdd.setDisable(true);
         User u1 = new User(
-                txtUserID.getText(),txtUserName.getText(),txtUserPassword.getText(),txtUserType.getText()
+                txtUserID.getText(),
+                txtUserName.getText(),
+                new String(Base64.getEncoder().encode(txtUserPassword.getText().getBytes())),
+                txtUserType.getText()
         );
+
+
 
         if(controller.saveUser(u1)) {
             new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();

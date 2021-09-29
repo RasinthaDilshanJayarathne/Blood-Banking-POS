@@ -7,11 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.DonateDetail;
+import model.StoreDetail;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import util.controller.DonationController;
+import view.tm.DonateDetailTM;
 import view.tm.StoreDetailTM;
 
 import java.sql.SQLException;
@@ -45,27 +49,28 @@ public class StoreBloodDetailFormController{
     }
 
     public void initTable(){
-        /*colRackID.setCellValueFactory(new PropertyValueFactory<>("rID"));
+       /* colRackID.setCellValueFactory(new PropertyValueFactory<>("rID"));
         colBloodID.setCellValueFactory(new PropertyValueFactory<>("blID"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        //colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        //colTime.setCellValueFactory(new PropertyValueFactory<>("time"));*/
 
         try {
-            setDonateDetailToTable(controller.getAllDonateDetail());
+            setDonateDetailToTable(new DonationController().getAllDonateDetail());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
+
     }
 
 
-    private void setDonateDetailToTable(ArrayList<StoreDetailTM> allDonateDetailToTable) {
+    private void setDonateDetailToTable(ArrayList<StoreDetail> allDonateDetailToTable) {
         ObservableList<StoreDetailTM> obList = FXCollections.observableArrayList();
         allDonateDetailToTable.forEach(e->{
             obList.add(
-                    new StoreDetailTM(e.getBlId(),e.getBloodGroup(),e.getRackId(),e.getRackName(),e.getSpace(),e.getQty()));
+                    new StoreDetailTM(e.getBlId(),e.getBloodGroup(),e.getRackName(),e.getRackId(),e.getSpace(),e.getQty()));
         });
         tblStoreDetail.setItems(obList);
 

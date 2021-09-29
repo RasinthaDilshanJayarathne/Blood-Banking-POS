@@ -21,27 +21,13 @@
             <Image url="@../assets/manageBloodRack.png" />
          </image>
       </ImageView>
-      <Button layoutX="1313.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="58.0" prefWidth="140.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAdd" layoutX="1007.0" layoutY="154.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="58.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="Add" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button layoutX="1160.0" layoutY="154.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="58.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="Update" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
       <TableView fx:id="tblBloodRack" layoutX="20.0" layoutY="279.0" opacity="0.9" prefHeight="442.0" prefWidth="754.0">
          <columns>
-            <TableColumn fx:id="colRackID" prefWidth="152.33334350585938" text="Rack Id" />
-            <TableColumn fx:id="colName" prefWidth="259.6666564941406" text="Rack Name" />
-            <TableColumn fx:id="colType" prefWidth="190.0" text="Blood Type" />
-            <TableColumn fx:id="colQTY" prefWidth="151.0" text="Quantity" />
+            <TableColumn fx:id="colRackID" prefWidth="129.00003051757812" text="Rack Id" />
+            <TableColumn fx:id="colName" prefWidth="201.0" text="Rack Name" />
+            <TableColumn fx:id="colType" prefWidth="147.0" text="Blood Type" />
+            <TableColumn fx:id="colQTY" prefWidth="147.0" text="Quantity" />
+            <TableColumn fx:id="colStoreQty" prefWidth="128.0" text="Store Qty" />
          </columns>
       </TableView>
       <AnchorPane layoutX="147.0" layoutY="213.0" opacity="0.9" prefHeight="52.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
@@ -58,12 +44,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="521.0" layoutY="739.0" mnemonicParsing="false" onAction="#printBloodRackOnAction" opacity="0.9" prefHeight="46.0" prefWidth="253.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Print" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="613.0" layoutY="54.0" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="612.0" layoutY="54.0" prefHeight="58.0" prefWidth="219.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtRackName" layoutX="13.0" layoutY="9.0" onKeyReleased="#textFields_Key_Released" prefHeight="44.0" prefWidth="195.0" promptText="A Plus" style="-fx-background-color: white;" styleClass="textField">
                <font>
@@ -115,16 +96,6 @@
             <ComboBox fx:id="cmbBloodType" layoutX="12.0" layoutY="12.0" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: white;" styleClass="combo" />
          </children>
       </AnchorPane>
-      <Button layoutX="456.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="58.0" prefWidth="112.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="860.0" layoutY="155.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="58.0" prefWidth="121.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="Clear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
       <BarChart fx:id="employeeBarChart" layoutX="810.0" layoutY="256.0" opacity="0.8" prefHeight="529.0" prefWidth="821.0" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #c3ee75;" title="Daily Donate Blood">
          <xAxis>
             <CategoryAxis label="Blood Group" prefHeight="61.0" prefWidth="649.0" side="BOTTOM" style="-fx-font-weight: bold;" />
@@ -147,5 +118,65 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1323.0" layoutY="147.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" alignment="CENTER" layoutX="1043.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="        Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1183.0" layoutY="147.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="903.0" layoutY="146.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="        Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1187.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1055.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="915.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1332.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER_RIGHT" layoutX="443.0" layoutY="53.0" mnemonicParsing="false" onAction="#searchOnAction" opacity="0.9" prefHeight="60.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="452.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/search.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="562.0" layoutY="738.0" mnemonicParsing="false" onAction="#printBloodRackOnAction" opacity="0.9" prefHeight="46.0" prefWidth="212.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="       Print" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="590.0" layoutY="743.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

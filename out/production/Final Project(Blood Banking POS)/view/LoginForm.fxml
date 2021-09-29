@@ -17,12 +17,12 @@
             <Image url="@../assets/welcome.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtUserName" layoutX="1002.0" layoutY="477.0" onAction="#goToPasswordOnAction" prefHeight="54.0" prefWidth="524.0" promptText="Enter User Name" styleClass="textfield-design" stylesheets="@../styles/style.css">
+      <TextField fx:id="txtUserName" layoutX="1002.0" layoutY="477.0" onAction="#goTiPassword" prefHeight="54.0" prefWidth="524.0" promptText="Enter User Name" styleClass="textfield-design" stylesheets="@../styles/style.css">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="1002.0" layoutY="574.0" prefHeight="54.0" prefWidth="524.0" promptText="Enter Password" styleClass="textfield-design" stylesheets="@../styles/style.css">
+      <PasswordField fx:id="txtPassword" layoutX="1002.0" layoutY="574.0" prefHeight="54.0" prefWidth="524.0" promptText="Enter Password" styleClass="textfield-design" stylesheets="@../styles/style.css">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -92,18 +92,10 @@
             <Font name="Cambria Bold" size="50.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel" layoutX="907.0" layoutY="640.0" prefHeight="34.0" prefWidth="517.0" textFill="RED">
+      <Label fx:id="errorLabel" layoutX="1006.0" layoutY="640.0" prefHeight="34.0" prefWidth="517.0" textFill="RED">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="1580.0" layoutY="690.0" mnemonicParsing="false" onAction="#AdminloginOnAction" prefHeight="55.0" prefWidth="96.0" styleClass="button-login" stylesheets="@../styles/style.css" text="   Log In" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="LOCK" size="30" />
-         </graphic>
-      </Button>
    </children>
 </AnchorPane>

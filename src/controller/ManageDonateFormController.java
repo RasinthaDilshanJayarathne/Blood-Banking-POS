@@ -60,9 +60,11 @@ public class ManageDonateFormController extends StoreDetail {
     public TextField txtStoreSearch;
     public TextField txtDonorSearch;
 
+
+
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
     //Pattern nicPattern = Pattern.compile("^[0-9]{12}|[0-9]{11}[A-Z]$");
-   // Pattern bloodTypePattern = Pattern.compile("^[A-Z]{1,2}[+]|[A-Z]{1,2}[-]$");
+    //Pattern bloodTypePattern = Pattern.compile("^[A-Z]{1,2}[+]|[A-Z]{1,2}[-]$");
     Pattern qtyPattern = Pattern.compile("^[0-9]{1}$");
 
     public DonorController controller=new DonorController();
@@ -73,6 +75,8 @@ public class ManageDonateFormController extends StoreDetail {
         initBloodRack();
         loadRackName();
         storeValidations();
+        //getDonor();
+        setDonorToTable(new DonorController().getAllDonor());
 
         txtDonateQTY.textProperty().addListener((observable, oldValue, newValue) -> {
             loadDateTime();
@@ -98,11 +102,29 @@ public class ManageDonateFormController extends StoreDetail {
                 searchStore(newValue);
             }
         });
+       txtType.textProperty().addListener((observable, oldValue, newValue) -> {
+           try {
+               name.clear();
+               name=new BloodRackController().loadRackNameByBloodType(newValue,name);
+               cmbRackNo.getItems().clear();
+               cmbRackNo.setItems((FXCollections.observableArrayList(name)));
+           } catch (SQLException throwables) {
+               throwables.printStackTrace();
+           } catch (ClassNotFoundException e) {
+               e.printStackTrace();
+           }
+       });
+       if (donorTM!=null){
+           txtDonID.setText(donorTM.getNic());
+           txtType.setText(donorTM.getType());
+           txtBloodID.setText(donorTM.getBlID());
+       }else {
+
+       }
+
     }
 
     private void storeValidations() {
-       // map.put(txtDonID, nicPattern);
-        //map.put(txtType, bloodTypePattern);
         map.put(txtDonateQTY, qtyPattern);
 
     }
@@ -139,13 +161,12 @@ public class ManageDonateFormController extends StoreDetail {
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colBloodID.setCellValueFactory(new PropertyValueFactory<>("blID"));
 
-        setDonorToTable(controller.getAllDonor());
-
         tblDonor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             loadDonorData(newValue);
         });
-
     }
+
+
 
     public void getRackIds(String id){
        try {
@@ -170,9 +191,10 @@ public class ManageDonateFormController extends StoreDetail {
         txtBloodID.setText(tm.getBlID());
     }
 
-    private void loadRackName() throws SQLException, ClassNotFoundException {
-        List<String> userID = BloodRackController.getBloodRackName();
-        cmbRackNo.getItems().addAll(userID);
+    List<String>name =new ArrayList<>();
+    public void loadRackName() throws SQLException, ClassNotFoundException {
+        name = BloodRackController.getBloodRackName();
+        cmbRackNo.getItems().addAll(name);
     }
 
     int x=-1;
@@ -183,7 +205,6 @@ public class ManageDonateFormController extends StoreDetail {
         colStore.setCellValueFactory(new PropertyValueFactory<>("space"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
 
-        //setDonateDetailToTable();
         setDonateDetailToTable(controller.getAllDetail());
         tblBloodRack.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
              x = (int) newValue;
@@ -200,9 +221,32 @@ public class ManageDonateFormController extends StoreDetail {
         tblBloodRack.setItems(obList);
     }
 
+    static DonorTM donorTM=null;
+    public void loadNewDonor(DonorTM donor1){
+        donorTM=donor1;
+    }
 
-    private void setDonorToTable(ArrayList<Donor> allDonor) {
+    public void setDonorToTable(ArrayList<Donor> allDonor) {
         ObservableList<DonorTM> obList = FXCollections.observableArrayList();
+
+        for (DonorTM tm:obList) {
+            if (allDonor.equals(tm)){
+                try {
+                    saveDonateDetail();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                allDonor.forEach(e->{
+                    obList.add(
+                            new DonorTM(e.getNic(),e.getUserID(),e.getName(),e.getAddress(),e.getCity(),e.getType(),e.getBlID(),e.getGender(),e.getPhoneNo(),e.getEmail()));
+                });
+                tblDonor.setItems(obList);
+            }
+        }
+
         allDonor.forEach(e->{
             obList.add(
                     new DonorTM(e.getNic(),e.getUserID(),e.getName(),e.getAddress(),e.getCity(),e.getType(),e.getBlID(),e.getGender(),e.getPhoneNo(),e.getEmail()));
@@ -211,9 +255,38 @@ public class ManageDonateFormController extends StoreDetail {
     }
 
     public void donateOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
+        List<String> donorNicList=new DonorController().getDonorNic();
+        System.out.println(donorNicList);
+        String nic=null;
+        //if (donor==null) {
+            System.out.println("1");
+            for (String s : donorNicList) {
+                if (txtDonID.getText().equals(s)) {
+                    System.out.println("2");
+                    nic = s;
+                    DonateDetail detail = new DonateDetail(
+                            txtBloodID.getText(),
+                            txtRackID.getText(),
+                            cmbRackNo.getValue().toString(),
+                            nic,
+                            txtDonateDate.getText(),
+                            txtDonateTime.getText(),
+                            Integer.parseInt(txtDonateQTY.getText()),
+                            Integer.parseInt(txtAvailableQty.getText())
+                    );
+                    new DonorController().saveDonateDetail(detail);
+                    clear();
+                    sendMail();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
+                    setDonateDetailToTable(controller.getAllDetail());
+                    return;
+                }
+            }
+       // }
         saveDonateDetail();
         clear();
         setDonateDetailToTable(controller.getAllDetail());
+        setDonorToTable(new DonorController().getAllDonor());
 
     }
 
@@ -227,11 +300,16 @@ public class ManageDonateFormController extends StoreDetail {
     }
 
     public void saveDonateDetail() throws SQLException, ClassNotFoundException {
+        System.out.println("Enter");
         if (updateRowQty()==true){
             DonateDetail donateDetail= new DonateDetail(
-                    txtBloodID.getText(),txtRackID.getText(),cmbRackNo.getValue().toString(),txtDonID.getText(),txtDonateDate.getText(),txtDonateTime.getText(),Integer.parseInt(txtDonateQTY.getText()),Integer.parseInt(txtAvailableQty.getText())
+                    txtBloodID.getText(),txtRackID.getText(),cmbRackNo.getValue(),txtDonID.getText(),txtDonateDate.getText(),txtDonateTime.getText(),Integer.parseInt(txtDonateQTY.getText()),Integer.parseInt(txtAvailableQty.getText())
             );
-            if (new DonorController().saveDonateDetail(donateDetail)){
+            System.out.println(donor.toString());
+            System.out.println(donateDetail.getNic());
+
+            if (new DonorController().saveDonor(donor,donateDetail)){
+                System.out.println("Save Dono");
                 try {
                     sendMail();
                     updateRowQty();
@@ -243,8 +321,15 @@ public class ManageDonateFormController extends StoreDetail {
         }
     }
 
+    static Donor donor;
+    public void getDonor(Donor donorOne){
+        donor=donorOne;
+        System.out.println("Enter "+ donor.getPhoneNo());
+    }
+
     private void clear(){
-        tblBloodRack.getItems().clear();
+        donorTM=null;
+        //tblBloodRack.getItems().clear();
         obList.clear();txtDonID.clear();txtType.clear();cmbRackNo.getSelectionModel().clearSelection();txtDonateQTY.clear();
         txtDonateDate.clear();txtDonateTime.clear();txtBloodID.clear();txtRackID.clear();txtAvailableQty.clear();
     }

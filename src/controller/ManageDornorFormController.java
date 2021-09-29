@@ -6,8 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.DonateDetail;
 import model.Donor;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -20,7 +23,9 @@ import util.controller.BloodRackController;
 import util.controller.DonorController;
 import util.controller.EmployeeController;
 import view.tm.DonorTM;
+import view.tm.StoreDetailTM;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -52,6 +57,8 @@ public class ManageDornorFormController {
     public TableColumn colType;
     public TableColumn colBloodID;
     public TextField txtBloodID;
+    public Button btnUpdate;
+    public Button btnDelete;
 
     private DonorController controller=new DonorController();
 
@@ -80,6 +87,8 @@ public class ManageDornorFormController {
                 search(newValue);
             }
         });
+
+        setDonorToTable(new DonorController().getAllDonor());
     }
 
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
@@ -127,13 +136,13 @@ public class ManageDornorFormController {
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colBloodID.setCellValueFactory(new PropertyValueFactory<>("blID"));
 
-        try {
+       /* try {
             setDonorToTable(controller.getAllDonor());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void getBloodIds(String id){
@@ -177,19 +186,54 @@ public class ManageDornorFormController {
     }
 
     public void saveDonorOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        Donor d1 = new Donor(
-                txtNIC.getText(),cmbUserId.getValue(),txtName.getText(),txtAddress.getText(),txtCity.getText(),cmbBloodType.getValue(),
-                txtBloodID.getText(),cmbGender.getValue(),txtPhoneNo.getText(),txtEmail.getText()
-        );
+        if (getDonorOne()==null){
+            System.out.println("AAAA");
+            new Alert(Alert.AlertType.WARNING, "Try Again..").show();
+        }else {
+            //getDonor();
+            Donor donorOne=getDonorOne();
+            new ManageDonateFormController().getDonor(donorOne);
+            System.out.println("BBBBB");
+            System.out.println(getDonorOne().getBlID());
+            new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
+            loadTableWhenDonorAdded(new DonorController().getAllDonor());
 
-        if(controller.saveDonor(d1)) {
+        }
+
+        //getDonor();
+        /*if(controller.saveDonor(d1)) {
             new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
 
             setDonorToTable(controller.getAllDonor());
             clear();
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again..").show();
-        }
+        }*/
+    }
+
+    public void loadTableWhenDonorAdded(ArrayList<Donor> allDonor) throws SQLException, ClassNotFoundException {
+        ObservableList<DonorTM> obList = FXCollections.observableArrayList();
+        allDonor.forEach(e->{
+            obList.add(
+                    new DonorTM(e.getNic(),e.getUserID(),e.getName(),e.getAddress(),e.getCity(),e.getType(),e.getBlID(),e.getGender(),e.getPhoneNo(),e.getEmail()));
+        });
+        DonorTM d1 = new DonorTM(
+                txtNIC.getText(),cmbUserId.getValue(),txtName.getText(),txtAddress.getText(),txtCity.getText(),cmbBloodType.getValue(),
+                txtBloodID.getText(),cmbGender.getValue(),txtPhoneNo.getText(),txtEmail.getText()
+        );
+        obList.add(d1);
+        tblDonor.setItems(obList);
+        new ManageDonateFormController().loadNewDonor(d1);
+    }
+
+
+
+    public Donor getDonorOne(){
+        Donor d1 = new Donor(
+                txtNIC.getText(),cmbUserId.getValue(),txtName.getText(),txtAddress.getText(),txtCity.getText(),cmbBloodType.getValue(),
+                txtBloodID.getText(),cmbGender.getValue(),txtPhoneNo.getText(),txtEmail.getText()
+        );
+        return d1;
     }
 
     private void setDonorToTable(ArrayList<Donor> allDonor) {

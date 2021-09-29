@@ -11,7 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import model.DonateDetail;
 import model.Hospital;
+import model.StoreDetail;
 import util.ValidationUtil;
 import util.controller.BloodRackController;
 import util.controller.HospitalController;
@@ -50,6 +52,7 @@ public class ManageOrderFormController {
     public TableView tblOrder;
     public TextField txtAvailableQty;
     public Button btnPlaceOrder;
+    public TableColumn colRackName;
 
     int cartSelectedRowForRemove = -1;
 
@@ -79,15 +82,11 @@ public class ManageOrderFormController {
 
         cmbBloodRackName.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             try {
-               // updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
                 if (!(controller.getAvailability(newValue) ==null)){
                     txtAvailableQty.setText(controller.getAvailability(newValue));
                     int i = updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
                     txtAvailableQty.setText(String.valueOf(i));
-                }else {
-
                 }
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } catch (Exception e) {
@@ -118,7 +117,7 @@ public class ManageOrderFormController {
         colName.setCellValueFactory(new PropertyValueFactory<>("hospitalName"));
         colBType.setCellValueFactory(new PropertyValueFactory<>("blType"));
        // colSQty.setCellValueFactory(new PropertyValueFactory<>("availableQty"));
-        //colRackName.setCellValueFactory(new PropertyValueFactory<>("rackName"));
+        colRackName.setCellValueFactory(new PropertyValueFactory<>("rackName"));
         colOQty.setCellValueFactory(new PropertyValueFactory<>("orderQty"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -170,7 +169,7 @@ public class ManageOrderFormController {
         cmbBloodType.getItems().addAll(FXCollections.observableArrayList(bloodType));
     }
     List<String>name =new ArrayList<>();
-    private void loadRackName() throws SQLException, ClassNotFoundException {
+    public void loadRackName() throws SQLException, ClassNotFoundException {
         name = BloodRackController.getBloodRackName();
         cmbBloodRackName.getItems().addAll(name);
     }
@@ -224,17 +223,12 @@ public class ManageOrderFormController {
     }
 
     private int updateAvailabilityQty(int availableQty){
-        System.out.println(cmbBloodRackName.getValue());
         int orderQtyList;
         for (CartTM temp:obList) {
-            if (cmbBloodType.getValue().equals(temp.getBlType()) && cmbBloodRackName.getValue().equals(temp.getRackName())){
+            if (cmbBloodType.getValue().equals(temp.getBlType()) && cmbBloodRackName.getValue().equals(temp.getRackName())) {
                 orderQtyList = temp.getOrderQty();
-                availableQty=availableQty-orderQtyList;
-               // txtAvailableQty.setText(String.valueOf(availableQty));
-            }/*else {
-                System.out.println("BBBBB");
-                txtAvailableQty.setText(String.valueOf(availableQty));
-            }*/
+                availableQty = availableQty - orderQtyList;
+            }
         }
         return availableQty;
     }
@@ -246,7 +240,6 @@ public class ManageOrderFormController {
         String hName=txtName.getText();
         String blType = cmbBloodType.getSelectionModel().getSelectedItem();
         int availableQty= Integer.parseInt(txtAvailableQty.getText());
-        System.out.println("DDDDDDD="+availableQty);
         String rackName = cmbBloodRackName.getSelectionModel().getSelectedItem();
         int orderQty = Integer.parseInt(txtOrderQty.getText());
         String date=txtOrderDate.getText();
@@ -341,24 +334,5 @@ public class ManageOrderFormController {
         //setOrderId();
         mail();
 
-       /* ArrayList<StoreDetail> storeDetails= new ArrayList<>();
-        for (CartTM tempTm:obList) {
-
-            // System.out.println(tempTm.getItemId() + " " + tempTm.getQuantity() + " " + tempTm.getUnitPrice());
-
-            storeDetails.add(new StoreDetail(tempTm.getHospitalId(),tempTm.getHospitalName(), tempTm.getRackName()),t);
-        }
-
-        //System.out.println("order object item check " + items);
-
-        Order order= new Order(txtOrderId.getText(), txtOrderDate.getText(),txtOrderTime.getText(),
-                cmbCustomerId.getValue(),total,items);
-
-        if (new OrderController().placeOrder(order)){
-            new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
-            setOrderId();
-        }else{
-            new Alert(Alert.AlertType.WARNING, "Try Again").show();
-        }*/
     }
 }

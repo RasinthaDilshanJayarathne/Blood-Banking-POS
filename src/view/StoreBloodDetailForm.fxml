@@ -25,8 +25,8 @@
             <TableColumn fx:id="colRackID" prefWidth="156.3333683013916" text="Rack Id" />
             <TableColumn fx:id="colBloodID" prefWidth="170.66668701171875" text="Blood ID" />
             <TableColumn fx:id="colQty" prefWidth="118.33331298828125" text="Quntity" />
-            <TableColumn fx:id="colDate" prefWidth="182.33334350585938" text="Store Date" />
-            <TableColumn fx:id="colTime" prefWidth="180.0" text="Store Time" />
+            <TableColumn prefWidth="182.33334350585938" text="Store Date" />
+            <TableColumn prefWidth="180.0" text="Store Time" />
         </columns>
       </TableView>
       <AnchorPane layoutX="175.0" layoutY="66.0" opacity="0.9" prefHeight="52.0" prefWidth="504.0" style="-fx-background-color: white;" styleClass="textPane">

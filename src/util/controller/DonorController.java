@@ -88,21 +88,49 @@ public class DonorController {
         return storeDetails;
     }
 
-    public boolean saveDonor(Donor d) throws SQLException, ClassNotFoundException {
-        Connection con= DbConnection.getInstance().getConnection();
-        String query="INSERT INTO Donor VALUES(?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement stm = con.prepareStatement(query);
-        stm.setObject(1,d.getNic());
-        stm.setObject(2,d.getUserID());
-        stm.setObject(3,d.getName());
-        stm.setObject(4,d.getAddress());
-        stm.setObject(5,d.getCity());
-        stm.setObject(6,d.getType());
-        stm.setObject(7,d.getBlID());
-        stm.setObject(8,d.getGender());
-        stm.setObject(9,d.getPhoneNo());
-        stm.setObject(10,d.getEmail());
-        return stm.executeUpdate()>0;
+    public boolean saveDonor(Donor d, DonateDetail donateDetail){
+        Connection con=null;
+        try {
+            con= DbConnection.getInstance().getConnection();
+            con.setAutoCommit(false);
+            String query="INSERT INTO Donor VALUES(?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement stm = con.prepareStatement(query);
+            stm.setObject(1,d.getNic());
+            stm.setObject(2,d.getUserID());
+            stm.setObject(3,d.getName());
+            stm.setObject(4,d.getAddress());
+            stm.setObject(5,d.getCity());
+            stm.setObject(6,d.getType());
+            stm.setObject(7,d.getBlID());
+            stm.setObject(8,d.getGender());
+            stm.setObject(9,d.getPhoneNo());
+            stm.setObject(10,d.getEmail());
+
+            if (stm.executeUpdate()>0){
+                if (saveDonateDetail(donateDetail)){
+                    con.commit();
+                    return true;
+                }else {
+                    con.rollback();
+                    return false;
+                }
+            }else {
+                con.rollback();
+                return false;
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
     }
 
     public boolean updateDonor(Donor d) throws SQLException, ClassNotFoundException {
@@ -241,5 +269,17 @@ public class DonorController {
             ));
         }
         return donors;
+    }
+
+    public List<String> getDonorNic() throws SQLException, ClassNotFoundException {
+        Connection con=DbConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("SELECT nic FROM Donor");
+        ResultSet rst=pstm.executeQuery();
+
+        List<String>stringList=new ArrayList<>();
+        while (rst.next()){
+            stringList.add(rst.getString(1));
+        }
+        return stringList;
     }
 }
