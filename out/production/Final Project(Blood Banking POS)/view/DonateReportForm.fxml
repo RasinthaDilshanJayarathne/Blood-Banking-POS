@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DonateReportFormController">
-   <children>
-      <AnchorPane layoutX="52.0" layoutY="51.0" prefHeight="693.0" prefWidth="694.0" style="-fx-background-color: #c3ee75; -fx-background-radius: 15; -fx-border-radius: 15;" />
-   </children>
-</AnchorPane>

@@ -7,9 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BloodRack;
+import model.DonateDetail;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -18,6 +20,7 @@ import util.ValidationUtil;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import util.controller.BloodRackController;
+import util.controller.DonationController;
 import util.controller.DonorController;
 import view.tm.BloodRackTM;
 
@@ -41,7 +44,7 @@ public class ManageBloodRackFormController {
     public TableColumn colQTY;
     public TextField txtSearch;
     public ComboBox<String> cmbBloodType;
-    public BarChart<String,Integer> employeeBarChart;
+    public BarChart<?,?> employeeBarChart;
     public TextField txtBloodID;
     public Button btnDelete;
     public Button btnUpdate;
@@ -76,8 +79,51 @@ public class ManageBloodRackFormController {
         });
     }
 
-    public void loadChart() throws SQLException, ClassNotFoundException {
+    /*public void loadChart() throws SQLException, ClassNotFoundException {
         employeeBarChart.getData().add(new BloodRackController().setUpBarChartFromDatabase());
+    }*/
+
+    private void loadChart(){
+        XYChart.Series series=new XYChart.Series();
+        XYChart.Series series2=new XYChart.Series();
+        series.setName("Total Qty");
+        series2.setName("Store Qty");
+
+        try {
+
+            loadData(series);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            loadStoreData(series2);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        employeeBarChart.getData().addAll(series,series2);
+    }
+
+    private void loadStoreData(XYChart.Series series2) throws SQLException, ClassNotFoundException {
+        ArrayList<BloodRack> bloodRacks = BloodRackController.setUpDailyBarChart();
+        for (BloodRack temp : bloodRacks
+        ) {
+            series2.getData().add(new XYChart.Data(String.valueOf(temp.getId()), temp.getStoreQty()));
+        }
+    }
+
+    private void loadData(XYChart.Series series) throws SQLException, ClassNotFoundException {
+        ArrayList<BloodRack> bloodRacks = BloodRackController.setUpDailyBarChart();
+        for (BloodRack temp : bloodRacks
+        ) {
+            series.getData().add(new XYChart.Data(String.valueOf(temp.getId()), temp.getQty()));
+        }
     }
 
     public void initTable(){
@@ -85,6 +131,7 @@ public class ManageBloodRackFormController {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQTY.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colType.setCellValueFactory(new PropertyValueFactory<>("bloodType"));
+        colStoreQty.setCellValueFactory(new PropertyValueFactory<>("storeQty"));
 
         try {
             setRackToTable(controller.getAllRack());
@@ -133,7 +180,7 @@ public class ManageBloodRackFormController {
     private void setRackToTable(ArrayList<BloodRack> allBloodRack) {
         ObservableList<BloodRackTM> obList = FXCollections.observableArrayList();
         allBloodRack.forEach(e->{
-            obList.add(new BloodRackTM(e.getId(),e.getBlId(),e.getName(),e.getQty(),e.getBloodType()));
+            obList.add(new BloodRackTM(e.getId(),e.getBlId(),e.getName(),e.getQty(),e.getBloodType(),e.getStoreQty()));
         });
         tblBloodRack.setItems(obList);
     }
@@ -178,10 +225,8 @@ public class ManageBloodRackFormController {
 
     public void saveOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         BloodRack r1 = new BloodRack(
-                txtRackID.getText(),txtBloodID.getText(),txtRackName.getText(),Integer.parseInt(txtRackQTY.getText()),cmbBloodType.getValue()
+                txtRackID.getText(),txtBloodID.getText(),txtRackName.getText(),Integer.parseInt(txtRackQTY.getText()),cmbBloodType.getValue(),0
         );
-        System.out.println(txtRackID.getText());
-        System.out.println(r1.getId());
         if(controller.saveBloodRack(r1)) {
             new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
 
@@ -196,7 +241,8 @@ public class ManageBloodRackFormController {
         try {
             btnAdd.setDisable(true);
             BloodRack r1= new BloodRack(
-                    txtRackID.getText(),txtBloodID.getText(),txtRackName.getText(),Integer.parseInt(txtRackQTY.getText()),cmbBloodType.getValue()        );
+                    txtRackID.getText(),txtBloodID.getText(),txtRackName.getText(),Integer.parseInt(txtRackQTY.getText()),cmbBloodType.getValue(),0
+            );
 
             if (controller.updateRack(r1)) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated..").show();
@@ -232,7 +278,7 @@ public class ManageBloodRackFormController {
             List<BloodRack> racks = BloodRackController.searchBloodRack(value);
 
             racks.forEach(e->{
-                obList.add(new BloodRackTM(e.getId(),e.getBlId(),e.getName(),e.getQty(),e.getBloodType()));
+                obList.add(new BloodRackTM(e.getId(),e.getBlId(),e.getName(),e.getQty(),e.getBloodType(),0));
             });
             tblBloodRack.setItems(obList);
         } catch (SQLException throwables) {

@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS Rack(
     name VARCHAR (15),
     totalQty INT (5),
     bloodGroup VARCHAR (5),
+    storeQty INT (5),
     CONSTRAINT PRIMARY KEY (rId),
     CONSTRAINT FOREIGN KEY (blId) REFERENCES Blood(blId) ON DELETE CASCADE ON UPDATE CASCADE
     );
@@ -223,12 +224,8 @@ UPDATE `donate detail` SET `donate detail`.QtyOnHand=QtyOnHand-2 FROM `donate de
 
 UPDATE Rack r LEFT JOIN `donate detail` dn ON dn.rId = dn.rid SET dn.QtyOnHand =? WHERE dn.blId =? AND dn.rId =?;
 
-
-
-
-UPDATE Rack r
-     LEFT JOIN `donate detail` dn
-     ON r.rId = dn.rId
-     SET dn.QtyOnHand = 5
-         WHERE dn.blId = 'B00-0005'
-     AND dn.rId = 'R00-0005';
+SELECT *
+FROM `donate detail`
+WHERE time=' 21:05 PM';
+GROUP BY date
+ORDER BY COUNT(QtyOnHand) DESC;

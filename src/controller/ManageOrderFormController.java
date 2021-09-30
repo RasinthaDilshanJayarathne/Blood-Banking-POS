@@ -11,9 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.DonateDetail;
-import model.Hospital;
-import model.StoreDetail;
+import model.*;
 import util.ValidationUtil;
 import util.controller.BloodRackController;
 import util.controller.HospitalController;
@@ -29,6 +27,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static java.lang.Compiler.enable;
+
 public class ManageOrderFormController {
 
     public TextField txtOrderQty;
@@ -36,7 +36,6 @@ public class ManageOrderFormController {
     public TableColumn colId;
     public TableColumn colName;
     public TableColumn colBType;
-    public TableColumn colSQty;
     public TableColumn colOQty;
     public TableColumn colDate;
     public TableColumn colTime;
@@ -60,6 +59,7 @@ public class ManageOrderFormController {
 
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
     Pattern orderQTYPattern = Pattern.compile("^[0-9]{1,3}$");
+    String selectedRackName;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         btnAdd.setDisable(true);
@@ -81,11 +81,11 @@ public class ManageOrderFormController {
         });
 
         cmbBloodRackName.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selectedRackName=newValue;
             try {
                 if (!(controller.getAvailability(newValue) ==null)){
-                    txtAvailableQty.setText(controller.getAvailability(newValue));
-                    int i = updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
-                    txtAvailableQty.setText(String.valueOf(i));
+                    setTxtAvailableQty(newValue);
+                    //txtAvailableQty.setText(new BloodRackController().getUpdatedStoreQty(newValue));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -110,6 +110,12 @@ public class ManageOrderFormController {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void setTxtAvailableQty(String newValue) throws SQLException, ClassNotFoundException {
+        txtAvailableQty.setText(controller.getAvailability(newValue));
+        int i = updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
+        txtAvailableQty.setText(String.valueOf(i));
     }
 
     private void setIniTable(){
@@ -219,9 +225,6 @@ public class ManageOrderFormController {
         }
     }
 
-    public void deleteOrderOnAction(ActionEvent actionEvent) {
-    }
-
     private int updateAvailabilityQty(int availableQty){
         int orderQtyList;
         for (CartTM temp:obList) {
@@ -293,7 +296,7 @@ public class ManageOrderFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }*/
-        clearOne();
+        //clearOne();
         cmbHospital.setDisable(true);
         txtName.setDisable(true);
     }
@@ -307,32 +310,64 @@ public class ManageOrderFormController {
         return -1;
     }
 
-    public void updateOrderOnAction(ActionEvent actionEvent) {
-
-    }
-
     public void clearOnAction(ActionEvent actionEvent) {
-       /* if (cartSelectedRowForRemove==-1){
-            new Alert(Alert.AlertType.WARNING, "Please Select a row").show();
-        }else{
+        if ( cartSelectedRowForRemove == -1 ) {
+            new Alert(Alert.AlertType.WARNING, "Please Select Row").show();
+        } else {
             obList.remove(cartSelectedRowForRemove);
-            if (obList.isEmpty()){
-                btnPlaceOrder.setDisable(true);
-            }
-            //calculateCost();
+            enable();
             tblOrder.refresh();
-        }*/
-        clearOne();
+
+        }
+        //clearOne();
 
     }
 
-    public void placeOrderOnAction(ActionEvent actionEvent) throws IOException {
+    public void placeOrderOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         cmbHospital.setDisable(false);
         txtName.setDisable(false);
-        clear();
-        tblOrder.getItems().clear();
-        //setOrderId();
-        mail();
+        //clear();
+        //tblOrder.getItems().clear();
+
+        //--------------------------------------------------------------
+
+        System.out.println(cmbBloodRackName.getValue());
+        String rackId=new OrderController().getRackId(cmbBloodRackName.getValue());
+        System.out.println(obList.toString());
+        ArrayList<OrderDetail>orderDetails=new ArrayList<>();
+        for (CartTM tm:obList) {
+            orderDetails.add(new OrderDetail(
+                    rackId,
+                    txtOrderID.getText(),
+                    tm.getOrderQty(),
+                    txtOrderDate.getText(),
+                    txtOrderTime.getText()
+            ));
+        }
+        System.out.println(orderDetails.toString());
+
+        Order order=new Order(
+                txtOrderID.getText(),
+                cmbHospital.getValue(),
+                txtOrderDate.getText(),
+                txtOrderTime.getText(),
+                orderDetails
+        );
+        if (new OrderController().placeOrder(order)){
+            new Alert(Alert.AlertType.CONFIRMATION, "Place Order").show();
+            mail();
+            setOrderId();
+            System.out.println("Selected rack name"+selectedRackName);
+            //setTxtAvailableQty(selectedRackName);
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Try Again").show();
+        }
+
+
+        //--------------------------------------------------------------
+
+
+
 
     }
 }

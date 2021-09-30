@@ -2,11 +2,15 @@ package util.controller;
 
 
 import db.DbConnection;
+import model.BloodRack;
+import model.Order;
+import model.OrderDetail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class OrderController {
     public String getOrderId() throws SQLException, ClassNotFoundException {
@@ -56,7 +60,7 @@ public class OrderController {
         return preparedStatement.executeUpdate()>0;
     }
 
-    public String updateNewAvalibilityQty(String name, String qty, String type) throws SQLException, ClassNotFoundException {
+    /*public String updateNewAvalibilityQty(String name, String qty, String type) throws SQLException, ClassNotFoundException {
         Connection con = DbConnection.getInstance().getConnection();
         PreparedStatement stm = con.prepareStatement(" SELECT r.rId FROM Rack r WHERE r.name =?");
         stm.setObject(1,name);
@@ -95,24 +99,105 @@ public class OrderController {
             }
         }
         return null;
+    }*/
+
+    public String getRackId(String rackName) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement stm = con.prepareStatement(" SELECT r.rId FROM Rack r WHERE r.name =?");
+        stm.setObject(1,rackName);
+        ResultSet rst=stm.executeQuery();
+
+        if (rst.next()){
+            return  rst.getString(1);
+        }
+        return null;
     }
 
-   /* public ArrayList<Order> getAllOrders() throws SQLException, ClassNotFoundException {
-        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM Orders");
+    public static ArrayList<OrderDetail> setUpDailyOrderBarChart() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT rId,sum(qty) as qty from `Order detail` group by rId order by qty desc");
         ResultSet rst = stm.executeQuery();
-        ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<OrderDetail> orderDetails = new ArrayList<>();
         while (rst.next()) {
-            orders.add(new Order(
-                    rst.getString(1),
-                    rst.getString(2),
-                    rst.getString(3),
-                    rst.getInt(4),
-                    rst.getString(5),
-                    rst.getInt(6),
-                    rst.getString(7),
-                    rst.getString(8)
-            ));
+            orderDetails.add(new OrderDetail(rst.getString(1),rst.getInt(2)));
         }
-        return orders;
-    }*/
+        return orderDetails;
+    }
+
+    public boolean placeOrder(Order newOrder) {
+        Connection con= null;
+        try {
+            con = DbConnection.getInstance().getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES (?,?,?,?)");
+            stm.setObject(1,newOrder.getOrderId());
+            stm.setObject(2,newOrder.getHospitalId());
+            stm.setObject(3,newOrder.getDate());
+            stm.setObject(4,newOrder.getTime());
+
+            if (stm.executeUpdate()>0){
+                System.out.println("save Order");
+                if (saveOrderDetail(newOrder)){
+                    System.out.println("save order drtail");
+                    con.commit();
+                    return true;
+                }else {
+                    con.rollback();
+                    return false;
+                }
+            }else {
+                con.rollback();
+                return false;
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    private boolean saveOrderDetail(Order newOrder) throws SQLException, ClassNotFoundException {
+        ArrayList<OrderDetail>orderDetails=newOrder.getOrderDetails();
+        System.out.println("print order detail LIST="+orderDetails.toString());
+        for (OrderDetail detail:orderDetails) {
+            PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("INSERT INTO `Order Detail` VALUES (?,?,?,?,?)");
+            stm.setObject(1,detail.getRackId());
+            stm.setObject(2,detail.getOrderId());
+            stm.setObject(3,detail.getQty());
+            stm.setObject(4,detail.getOrderDate());
+            stm.setObject(5,detail.getOrderTime());
+
+            if (stm.executeUpdate()>0){
+                System.out.println("method save order detail");
+                if (new BloodRackController().updateRackStoreQty(detail.getRackId(),detail.getQty())){
+                    System.out.println("update rack");
+                    return true;
+                }else {
+                    return false;
+                }
+            }else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    //-------------------- get Order Count --------------------------------------
+    public int donationCount() throws SQLException, ClassNotFoundException {
+        int numberRow = 0;
+        PreparedStatement statement = DbConnection.getInstance().getConnection().
+                prepareStatement("SELECT COUNT(*) FROM Orders");
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            numberRow = resultSet.getInt("count(*)");
+        }
+        return numberRow;
+    }
 }

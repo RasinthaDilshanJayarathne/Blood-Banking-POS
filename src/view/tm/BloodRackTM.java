@@ -6,16 +6,18 @@ public class BloodRackTM {
     private String name;
     private int qty;
     private String bloodType;
+    private int storeQty;
 
     public BloodRackTM() {
     }
 
-    public BloodRackTM(String id, String blId, String name, int qty, String bloodType) {
+    public BloodRackTM(String id, String blId, String name, int qty, String bloodType, int storeQty) {
         this.setId(id);
         this.setBlId(blId);
         this.setName(name);
         this.setQty(qty);
         this.setBloodType(bloodType);
+        this.setStoreQty(storeQty);
     }
 
     public String getId() {
@@ -56,5 +58,25 @@ public class BloodRackTM {
 
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
+    }
+
+    public int getStoreQty() {
+        return storeQty;
+    }
+
+    public void setStoreQty(int storeQty) {
+        this.storeQty = storeQty;
+    }
+
+    @Override
+    public String toString() {
+        return "BloodRackTM{" +
+                "id='" + id + '\'' +
+                ", blId='" + blId + '\'' +
+                ", name='" + name + '\'' +
+                ", qty=" + qty +
+                ", bloodType='" + bloodType + '\'' +
+                ", storeQty=" + storeQty +
+                '}';
     }
 }

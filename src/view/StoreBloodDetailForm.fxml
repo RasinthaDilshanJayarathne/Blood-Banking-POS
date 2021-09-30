@@ -22,16 +22,15 @@
       </ImageView>
       <TableView fx:id="tblStoreDetail" layoutX="23.0" layoutY="136.0" opacity="0.9" prefHeight="568.0" prefWidth="808.0">
         <columns>
-            <TableColumn fx:id="colRackID" prefWidth="156.3333683013916" text="Rack Id" />
-            <TableColumn fx:id="colBloodID" prefWidth="170.66668701171875" text="Blood ID" />
-            <TableColumn fx:id="colQty" prefWidth="118.33331298828125" text="Quntity" />
-            <TableColumn prefWidth="182.33334350585938" text="Store Date" />
-            <TableColumn prefWidth="180.0" text="Store Time" />
+            <TableColumn fx:id="colRackID" prefWidth="176.00003051757812" text="Rack Id" />
+            <TableColumn fx:id="colRackName" prefWidth="250.00003051757812" text="Rack Name" />
+            <TableColumn fx:id="colBloodType" prefWidth="179.0" text="Blood Type" />
+            <TableColumn fx:id="colQty" prefWidth="202.0" text="Store Qty" />
         </columns>
       </TableView>
       <AnchorPane layoutX="175.0" layoutY="66.0" opacity="0.9" prefHeight="52.0" prefWidth="504.0" style="-fx-background-color: white;" styleClass="textPane">
          <children>
-            <TextField layoutX="13.0" layoutY="9.0" prefHeight="39.0" prefWidth="477.0" style="-fx-background-color: white;" styleClass="textField">
+            <TextField fx:id="txtSearch" layoutX="13.0" layoutY="9.0" onAction="#searchOnAction" prefHeight="39.0" prefWidth="477.0" style="-fx-background-color: white;" styleClass="textField">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -50,7 +49,7 @@
       </Button>
       <BarChart fx:id="donateBloodDetailBarChart" layoutX="868.0" layoutY="39.0" opacity="0.8" prefHeight="668.0" prefWidth="761.0" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #c3ee75;" title="Store Blood">
          <xAxis>
-            <CategoryAxis label="Blood Group" prefHeight="61.0" prefWidth="649.0" side="BOTTOM" style="-fx-font-weight: bold;" />
+            <CategoryAxis label="Rack ID" prefHeight="61.0" prefWidth="649.0" side="BOTTOM" style="-fx-font-weight: bold;" />
          </xAxis>
          <yAxis>
             <NumberAxis label="No Of Store Qty" prefHeight="601.0" prefWidth="60.0" side="LEFT" style="-fx-font-weight: bold;" />

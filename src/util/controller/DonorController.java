@@ -107,9 +107,14 @@ public class DonorController {
             stm.setObject(10,d.getEmail());
 
             if (stm.executeUpdate()>0){
-                if (saveDonateDetail(donateDetail)){
-                    con.commit();
-                    return true;
+                if(saveDonateDetail(donateDetail)){
+                    if (updateBloodRackStoreQty(donateDetail.getrID(), donateDetail.getQtyOnHand())){
+                        con.commit();
+                        return true;
+                    }else {
+                        con.rollback();
+                        return false;
+                    }
                 }else {
                     con.rollback();
                     return false;
@@ -131,6 +136,15 @@ public class DonorController {
             }
         }
         return false;
+    }
+
+    public boolean updateBloodRackStoreQty(String id,int storeQty) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement(" UPDATE Rack SET storeQty=storeQty+? WHERE rId=?");
+        preparedStatement.setObject(1,storeQty);
+        preparedStatement.setObject(2,id);
+
+        return preparedStatement.executeUpdate()>0;
     }
 
     public boolean updateDonor(Donor d) throws SQLException, ClassNotFoundException {
@@ -216,7 +230,7 @@ public class DonorController {
 
         if (stm.executeUpdate() > 0) {
 
-            if (updateQty(d.getrID(),d.getQtyOnHand(),d.getNic(),d.getDate())){
+            if (updateQty(d.getrID(),d.getQtyOnHand(),d.getNic(),d.getDate(),d.getTime())){
             }else{
                 return false;
             }
@@ -226,13 +240,14 @@ public class DonorController {
         return true;
     }
 
-    private boolean updateQty(String rackId, Integer quantity,String nic,String date) throws SQLException, ClassNotFoundException {
+    private boolean updateQty(String rackId, Integer quantity,String nic,String date,String time) throws SQLException, ClassNotFoundException {
         Connection con = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = con.prepareStatement("UPDATE  `Donate Detail` SET totalQty=totalQty-? WHERE rId=? AND nic=? AND date=?");
+        PreparedStatement preparedStatement = con.prepareStatement("UPDATE  `Donate Detail` SET totalQty=totalQty-? WHERE rId=? AND nic=? AND date=? AND time=?");
         preparedStatement.setObject(1,quantity);
         preparedStatement.setObject(2,rackId);
         preparedStatement.setObject(3,nic);
         preparedStatement.setObject(4,date);
+        preparedStatement.setObject(5,time);
         return preparedStatement.executeUpdate()>0;
     }
 

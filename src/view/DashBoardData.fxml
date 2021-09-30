@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardDataController">
+<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white; -fx-font-weight: bold;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardDataController">
    <children>
       <ImageView fitHeight="785.0" fitWidth="1069.0" layoutX="220.0" layoutY="5.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -131,7 +131,7 @@
       </AnchorPane>
       <AnchorPane layoutX="88.0" layoutY="231.0" opacity="0.7" prefHeight="528.0" prefWidth="710.0" style="-fx-background-color: #d6d6d6; -fx-background-radius: 15; -fx-border-radius: 15;">
          <children>
-            <LineChart fx:id="donateDetail" layoutY="-1.0" prefHeight="387.0" prefWidth="710.0" style="-fx-background-color: #6ab04c; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <LineChart fx:id="donateDetail" layoutY="-1.0" prefHeight="387.0" prefWidth="710.0" style="-fx-background-color: #6ab04c; -fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15;" title="Blood Donation">
               <xAxis>
                 <CategoryAxis prefHeight="30.0" prefWidth="645.0" side="BOTTOM" />
               </xAxis>
@@ -139,22 +139,22 @@
                 <NumberAxis prefHeight="327.0" prefWidth="48.0" side="LEFT" />
               </yAxis>
             </LineChart>
-            <Label fx:id="lblDate" layoutX="137.0" layoutY="411.0" prefHeight="21.0" prefWidth="125.0">
+            <Label fx:id="lblDate" layoutX="137.0" layoutY="446.0" prefHeight="21.0" prefWidth="125.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="232.0" layoutY="411.0" prefHeight="27.0" prefWidth="375.0" text="our branch has stored the amount of blood ">
+            <Label layoutX="232.0" layoutY="446.0" prefHeight="27.0" prefWidth="375.0" text="our branch has stored the amount of blood ">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="88.0" layoutY="436.0" prefHeight="27.0" prefWidth="516.0" text="mentioned in the note above.">
+            <Label layoutX="88.0" layoutY="471.0" prefHeight="27.0" prefWidth="516.0" text="mentioned in the note above.">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="88.0" layoutY="411.0" prefHeight="25.0" prefWidth="49.0" text="As of">
+            <Label layoutX="88.0" layoutY="446.0" prefHeight="25.0" prefWidth="49.0" text="As of">
                <font>
                   <Font size="18.0" />
                </font>
@@ -163,7 +163,7 @@
       </AnchorPane>
       <AnchorPane layoutX="858.0" layoutY="231.0" opacity="0.7" prefHeight="528.0" prefWidth="710.0" style="-fx-background-color: #d6d6d6; -fx-background-radius: 15; -fx-border-radius: 15;">
          <children>
-            <BarChart fx:id="orderDetail" prefHeight="387.0" prefWidth="710.0" style="-fx-background-color: #fc993e #fc993e; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <BarChart fx:id="orderDetail" prefHeight="387.0" prefWidth="710.0" style="-fx-background-color: #fc993e #fc993e; -fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 15;" title="Blood Orders">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -171,6 +171,26 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
+            <Label fx:id="lblDate1" layoutX="145.0" layoutY="446.0" prefHeight="21.0" prefWidth="125.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="240.0" layoutY="446.0" prefHeight="27.0" prefWidth="375.0" text="our branch has orders the amount of blood ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="471.0" prefHeight="27.0" prefWidth="516.0" text="mentioned in the note above.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="446.0" prefHeight="25.0" prefWidth="49.0" text="As of">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

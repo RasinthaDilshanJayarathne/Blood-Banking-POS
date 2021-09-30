@@ -173,8 +173,13 @@ public class ManageDonateFormController extends StoreDetail {
            try {
                BloodRack rack = new BloodRackController().getRackIds(id);
                txtRackID.setText(rack.getId());
-               String qty=new DonationController().getAvailability(txtRackID.getText());
-               txtAvailableQty.setText(qty);
+
+               if(!new DonationController().checkAvailabilityOrNot(txtRackID.getText())){
+                    txtAvailableQty.setText(new BloodRackController().getCapacity(txtRackID.getText()));
+               }else {
+                   String qty = new DonationController().getAvailability(txtRackID.getText());
+                   txtAvailableQty.setText(qty);
+               }
 
            } catch (SQLException throwables) {
                throwables.printStackTrace();
@@ -183,6 +188,7 @@ public class ManageDonateFormController extends StoreDetail {
            }
        }catch (Exception e){
        }
+
     }
 
     private void loadDonorData(DonorTM tm) {
@@ -256,13 +262,13 @@ public class ManageDonateFormController extends StoreDetail {
 
     public void donateOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         List<String> donorNicList=new DonorController().getDonorNic();
-        System.out.println(donorNicList);
+        //System.out.println(donorNicList);
         String nic=null;
         //if (donor==null) {
-            System.out.println("1");
+            //System.out.println("1");
             for (String s : donorNicList) {
                 if (txtDonID.getText().equals(s)) {
-                    System.out.println("2");
+                   // System.out.println("2");
                     nic = s;
                     DonateDetail detail = new DonateDetail(
                             txtBloodID.getText(),
@@ -275,6 +281,7 @@ public class ManageDonateFormController extends StoreDetail {
                             Integer.parseInt(txtAvailableQty.getText())
                     );
                     new DonorController().saveDonateDetail(detail);
+                    new DonorController().updateBloodRackStoreQty(txtRackID.getText(), Integer.parseInt(txtDonateQTY.getText()));
                     clear();
                     sendMail();
                     new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
@@ -300,16 +307,12 @@ public class ManageDonateFormController extends StoreDetail {
     }
 
     public void saveDonateDetail() throws SQLException, ClassNotFoundException {
-        System.out.println("Enter");
         if (updateRowQty()==true){
             DonateDetail donateDetail= new DonateDetail(
                     txtBloodID.getText(),txtRackID.getText(),cmbRackNo.getValue(),txtDonID.getText(),txtDonateDate.getText(),txtDonateTime.getText(),Integer.parseInt(txtDonateQTY.getText()),Integer.parseInt(txtAvailableQty.getText())
             );
-            System.out.println(donor.toString());
-            System.out.println(donateDetail.getNic());
 
             if (new DonorController().saveDonor(donor,donateDetail)){
-                System.out.println("Save Dono");
                 try {
                     sendMail();
                     updateRowQty();
@@ -324,7 +327,7 @@ public class ManageDonateFormController extends StoreDetail {
     static Donor donor;
     public void getDonor(Donor donorOne){
         donor=donorOne;
-        System.out.println("Enter "+ donor.getPhoneNo());
+        //System.out.println("Enter "+ donor.getPhoneNo());
     }
 
     private void clear(){
@@ -428,7 +431,7 @@ public class ManageDonateFormController extends StoreDetail {
         }
     }
 
-    private void searchStore(String value) {
+    public void searchStore(String value) {
         ObservableList<StoreDetailTM> obList = FXCollections.observableArrayList();
         try {
             List<StoreDetail> storeDetails = DonationController.searchStore(value);

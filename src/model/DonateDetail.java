@@ -13,6 +13,12 @@ public class DonateDetail {
     public DonateDetail() {
     }
 
+    public DonateDetail(String date, int qtyOnHand, int totalQty) {
+        this.date = date;
+        this.qtyOnHand = qtyOnHand;
+        this.totalQty = totalQty;
+    }
+
     public DonateDetail(String blID, String rID, String name, String nic, String date, String time, int qtyOnHand, int totalQty) {
         this.setBlID(blID);
         this.setrID(rID);

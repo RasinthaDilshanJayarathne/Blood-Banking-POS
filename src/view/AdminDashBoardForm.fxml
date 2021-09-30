@@ -142,11 +142,11 @@
                   </JFXButton>
                   <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Report" textFill="WHITE">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#donateReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Donate Report        ">
+                      <MenuItem mnemonicParsing="false" onAction="#donateReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Order Report          ">
                            <graphic>
                               <FontAwesomeIconView glyphName="TH" size="20" />
                            </graphic></MenuItem>
-                      <MenuItem mnemonicParsing="false" onAction="#storeReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Store Report       ">
+                      <MenuItem mnemonicParsing="false" onAction="#storeReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Store Report         ">
                            <graphic>
                               <FontAwesomeIconView glyphName="TH" size="20" />
                            </graphic></MenuItem>

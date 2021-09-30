@@ -35,10 +35,17 @@ public class LoginFormController {
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         String userName=txtUserName.getText();
+        //String password=txtPassword.getText();
         String password=new String(Base64.getEncoder().encode(txtPassword.getText().getBytes()));
 
         User loginUser = new UserController().getLoginUser(userName, password);
         if (loginUser!=null){
+
+            if (txtPassword.getText()!=password || txtUserName.getText()!=userName){
+                errorLabel.setText("Enterr correct Username or Password");
+                //new Alert(Alert.AlertType.WARNING, "Enterr correct username or passwod").showAndWait();
+            }
+
             if (loginUser.getType().equals("Admin")){
                 URL resource = getClass().getResource("../view/AdminDashBoardForm.fxml");
                 Parent load = FXMLLoader.load(resource);
@@ -51,9 +58,10 @@ public class LoginFormController {
                 Stage window = (Stage) context.getScene().getWindow();
                 window.setScene(new Scene(load));
 
-            }else {
-                errorLabel.setText("Enter correct username or password");
             }
+        }else {
+            errorLabel.setText("Enter correct username or password");
+           // new Alert(Alert.AlertType.WARNING, "Enterr correct username or passwod").showAndWait();
         }
         clear();
     }
@@ -66,18 +74,6 @@ public class LoginFormController {
 
     public void exitOnAction(ActionEvent actionEvent) {
         System.exit(0);
-    }
-
-    public void goToPasswordOnAction(ActionEvent actionEvent) {
-       // txtPassword.requestFocus();
-    }
-
-
-    public void AdminloginOnAction(ActionEvent actionEvent) throws IOException {
-        /*URL resource = getClass().getResource("../view/AdminDashBoardForm.fxml");
-        Parent load = FXMLLoader.load(resource);
-        Stage window = (Stage) context.getScene().getWindow();
-        window.setScene(new Scene(load));*/
     }
 
     public void goTiPassword(ActionEvent actionEvent) {
