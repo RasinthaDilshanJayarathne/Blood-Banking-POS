@@ -13,3 +13,7 @@ Admin Dashboard 🖥
 
 ![Screenshot (258)](https://user-images.githubusercontent.com/87766409/135577125-3aa54a1a-f63b-4e8c-a90f-d87656fa6a9b.png)
 
+Reception Dashboard 🖥
+
+![Screenshot (267)](https://user-images.githubusercontent.com/87766409/135577554-0c6aa346-ec43-4a09-a029-ceed168178c7.png)
+
