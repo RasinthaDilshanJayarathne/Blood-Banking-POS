@@ -25,7 +25,7 @@ Manage Blood Orders 📦
 
 ![Screenshot (260)](https://user-images.githubusercontent.com/87766409/135578413-4314d3c5-2b67-4a9f-b260-42130b78d515.png)
 
-Daily Blood
+Daily Blood Order Detail 📈
 
 ![Screenshot (262)](https://user-images.githubusercontent.com/87766409/135578620-7d481805-14a9-40fa-84d7-8790036bfd6d.png)
 
