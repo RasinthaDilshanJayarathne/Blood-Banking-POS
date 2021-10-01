@@ -37,4 +37,9 @@ Daily Blood Donate Setail 📊
 
 ![Screenshot (263)](https://user-images.githubusercontent.com/87766409/135578922-ba5dfcee-8073-4cc5-94ee-302e5efcce08.png)
 
+View  Order Detai 👀
+
+![Screenshot (265)](https://user-images.githubusercontent.com/87766409/135579685-31640198-1014-4fd7-9e0c-ed1662722f38.png)
+
+
 
