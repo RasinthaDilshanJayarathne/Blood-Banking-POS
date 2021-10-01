@@ -41,5 +41,6 @@ View  Order Detai 👀
 
 ![Screenshot (265)](https://user-images.githubusercontent.com/87766409/135579685-31640198-1014-4fd7-9e0c-ed1662722f38.png)
 
+View Blood Store 👁
 
-
+![Screenshot (264)](https://user-images.githubusercontent.com/87766409/135580024-2f6cf2a7-a145-468b-b3fc-a8efe87ca43b.png)
