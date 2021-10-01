@@ -17,3 +17,6 @@ Reception Dashboard 🖥
 
 ![Screenshot (267)](https://user-images.githubusercontent.com/87766409/135577554-0c6aa346-ec43-4a09-a029-ceed168178c7.png)
 
+Blood Donation Process 🩸
+
+![Screenshot (259)](https://user-images.githubusercontent.com/87766409/135577902-94fa0b1b-20a4-4a80-96cc-7ba0fa478e25.png)
