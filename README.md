@@ -29,6 +29,8 @@ Daily Blood Order Detail 📈
 
 ![Screenshot (262)](https://user-images.githubusercontent.com/87766409/135578620-7d481805-14a9-40fa-84d7-8790036bfd6d.png)
 
+Daily Blood Donate Setail 📊
 
+![Screenshot (263)](https://user-images.githubusercontent.com/87766409/135578922-ba5dfcee-8073-4cc5-94ee-302e5efcce08.png)
 
 
