@@ -30,7 +30,7 @@ public class BloodController {
     }
 
     public boolean updateBlood(Blood b) throws SQLException, ClassNotFoundException {
-        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("UPDATE Blood SET bloodGroup=?,  description=? WHERE blId=?");
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("UPDATE Blood SET bloodGroup=?,description=? WHERE blId=?");
         stm.setObject(1,b.getBlType());
         stm.setObject(2,b.getBlDescription());
         stm.setObject(3,b.getBlId());

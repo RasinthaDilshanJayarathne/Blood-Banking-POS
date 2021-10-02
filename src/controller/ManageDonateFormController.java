@@ -60,8 +60,6 @@ public class ManageDonateFormController extends StoreDetail {
     public TextField txtStoreSearch;
     public TextField txtDonorSearch;
 
-
-
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
     //Pattern nicPattern = Pattern.compile("^[0-9]{12}|[0-9]{11}[A-Z]$");
     //Pattern bloodTypePattern = Pattern.compile("^[A-Z]{1,2}[+]|[A-Z]{1,2}[-]$");
@@ -121,12 +119,10 @@ public class ManageDonateFormController extends StoreDetail {
        }else {
 
        }
-
     }
 
     private void storeValidations() {
         map.put(txtDonateQTY, qtyPattern);
-
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
@@ -166,8 +162,6 @@ public class ManageDonateFormController extends StoreDetail {
         });
     }
 
-
-
     public void getRackIds(String id){
        try {
            try {
@@ -180,7 +174,6 @@ public class ManageDonateFormController extends StoreDetail {
                    String qty = new DonationController().getAvailability(txtRackID.getText());
                    txtAvailableQty.setText(qty);
                }
-
            } catch (SQLException throwables) {
                throwables.printStackTrace();
            } catch (ClassNotFoundException e) {
@@ -188,7 +181,6 @@ public class ManageDonateFormController extends StoreDetail {
            }
        }catch (Exception e){
        }
-
     }
 
     private void loadDonorData(DonorTM tm) {
@@ -211,11 +203,23 @@ public class ManageDonateFormController extends StoreDetail {
         colStore.setCellValueFactory(new PropertyValueFactory<>("space"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
 
-        setDonateDetailToTable(controller.getAllDetail());
+        ArrayList<StoreDetailTM>arrayList=new ArrayList<>();
+
+        for (BloodRack tm:new BloodRackController().getAllRack()) {
+            StoreDetailTM detailTM=new StoreDetailTM(
+                    tm.getBlId(),
+                    tm.getBloodType(),
+                    tm.getId(),
+                    tm.getName(),
+                    tm.getQty(),
+                    tm.getStoreQty()
+            );
+            arrayList.add(detailTM);
+        }
+        setDonateDetailToTable(arrayList);
         tblBloodRack.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
              x = (int) newValue;
         });
-
     }
 
     ObservableList<StoreDetailTM> obList = FXCollections.observableArrayList();
@@ -262,13 +266,9 @@ public class ManageDonateFormController extends StoreDetail {
 
     public void donateOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         List<String> donorNicList=new DonorController().getDonorNic();
-        //System.out.println(donorNicList);
         String nic=null;
-        //if (donor==null) {
-            //System.out.println("1");
             for (String s : donorNicList) {
                 if (txtDonID.getText().equals(s)) {
-                   // System.out.println("2");
                     nic = s;
                     DonateDetail detail = new DonateDetail(
                             txtBloodID.getText(),
@@ -282,14 +282,13 @@ public class ManageDonateFormController extends StoreDetail {
                     );
                     new DonorController().saveDonateDetail(detail);
                     new DonorController().updateBloodRackStoreQty(txtRackID.getText(), Integer.parseInt(txtDonateQTY.getText()));
-                    clear();
                     sendMail();
+                    clear();
                     new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
                     setDonateDetailToTable(controller.getAllDetail());
                     return;
                 }
             }
-       // }
         saveDonateDetail();
         clear();
         setDonateDetailToTable(controller.getAllDetail());
@@ -327,7 +326,6 @@ public class ManageDonateFormController extends StoreDetail {
     static Donor donor;
     public void getDonor(Donor donorOne){
         donor=donorOne;
-        //System.out.println("Enter "+ donor.getPhoneNo());
     }
 
     private void clear(){
@@ -337,7 +335,6 @@ public class ManageDonateFormController extends StoreDetail {
         txtDonateDate.clear();txtDonateTime.clear();txtBloodID.clear();txtRackID.clear();txtAvailableQty.clear();
     }
 
-    //----------------------------------------------------------------------------------------
     public boolean updateRowQty() {
         int qtyOnHand = Integer.parseInt(txtAvailableQty.getText());
         int donateQty = Integer.parseInt(txtDonateQTY.getText()+"");
@@ -360,7 +357,6 @@ public class ManageDonateFormController extends StoreDetail {
             );
 
             int rowNumber = isExists(tm);
-            //System.out.println(rowNumber);
 
             if (rowNumber == -1) {
                 // new Add
@@ -378,14 +374,12 @@ public class ManageDonateFormController extends StoreDetail {
                             temp.getSpace(),
                             temp.getQty() + donateQty
                     );
-
                     obList.remove(rowNumber);
                     obList.add(newTm);
                 }
-                /*else{
+                else{
                     new Alert(Alert.AlertType.WARNING,"Invalid Quantity").show();
                 }
-*/
             }
             //tblBloodRack.getItems().clear();
             tblBloodRack.setItems(obList);

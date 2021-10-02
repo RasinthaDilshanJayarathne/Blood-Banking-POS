@@ -84,8 +84,8 @@ public class ManageOrderFormController {
             selectedRackName=newValue;
             try {
                 if (!(controller.getAvailability(newValue) ==null)){
-                    setTxtAvailableQty(newValue);
-                    //txtAvailableQty.setText(new BloodRackController().getUpdatedStoreQty(newValue));
+                   // setTxtAvailableQty(newValue);
+                    txtAvailableQty.setText(new BloodRackController().getUpdatedStoreQty(newValue));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -112,32 +112,21 @@ public class ManageOrderFormController {
         });
     }
 
-    private void setTxtAvailableQty(String newValue) throws SQLException, ClassNotFoundException {
+    /*private void setTxtAvailableQty(String newValue) throws SQLException, ClassNotFoundException {
         txtAvailableQty.setText(controller.getAvailability(newValue));
         int i = updateAvailabilityQty(Integer.parseInt(controller.getAvailability(newValue)));
         txtAvailableQty.setText(String.valueOf(i));
-    }
+    }*/
 
     private void setIniTable(){
         colId.setCellValueFactory(new PropertyValueFactory<>("hospitalId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("hospitalName"));
         colBType.setCellValueFactory(new PropertyValueFactory<>("blType"));
-       // colSQty.setCellValueFactory(new PropertyValueFactory<>("availableQty"));
         colRackName.setCellValueFactory(new PropertyValueFactory<>("rackName"));
         colOQty.setCellValueFactory(new PropertyValueFactory<>("orderQty"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-
     }
-
-    /*private void setOrderToTable(ArrayList<Order> allOrders) {
-        ObservableList<OrderTM> obList = FXCollections.observableArrayList();
-        allOrders.forEach(e->{
-            obList.add(
-                    new OrderTM(e.gethId(),e.gethName(),e.getBlType(),e.getAvailableQty(),e.getrName(),e.getOrderQty(),e.getDate(),e.getTime()));
-        });
-        tblOrder.setItems(obList);
-    }*/
 
     public void loadDateTime(){
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -167,7 +156,6 @@ public class ManageOrderFormController {
             Hospital hospital = new HospitalController().getHospital(id);
             txtName.setText(hospital.getName());
         }catch (Exception e){
-
         }
     }
     private void hospitalBloodType() throws SQLException, ClassNotFoundException {
@@ -203,25 +191,6 @@ public class ManageOrderFormController {
             } else if (response instanceof Boolean) {
                 //new Alert(Alert.AlertType.INFORMATION, "Aded").showAndWait();
             }
-        }
-    }
-
-    private void clear(){
-        try {
-            txtOrderDate.clear();txtOrderTime.clear();cmbHospital.getSelectionModel().clearSelection();
-            txtName.clear();cmbBloodType.getSelectionModel().clearSelection();cmbBloodRackName.getSelectionModel().clearSelection();
-            txtAvailableQty.clear();txtOrderQty.clear();
-        }catch (Exception e){
-
-        }
-
-    }
-    private void clearOne(){
-        try {
-            cmbBloodType.getSelectionModel().clearSelection();cmbBloodRackName.getSelectionModel().clearSelection();
-            txtAvailableQty.clear();txtOrderQty.clear();
-        }catch (Exception e){
-
         }
     }
 
@@ -263,7 +232,6 @@ public class ManageOrderFormController {
                 rackName,
                 date,
                 time
-
         );
 
         int rowNumber=isExists(tm);
@@ -273,30 +241,27 @@ public class ManageOrderFormController {
         }else{
             // update
             CartTM temp = obList.get(rowNumber);
-            CartTM newTm = new CartTM(
-                    temp.getHospitalId(),
-                    temp.getHospitalName(),
-                    temp.getBlType(),
-                    temp.getOrderQty()+orderQty,
-                    temp.getRackName(),
-                    temp.getDate(),
-                    temp.getTime()
-            );
 
-            obList.remove(rowNumber);
-            obList.add(newTm);
+            int totalQty=Integer.parseInt(txtOrderQty.getText())+temp.getOrderQty();
+
+            if (totalQty<=availableQty){
+                CartTM newTm = new CartTM(
+                        temp.getHospitalId(),
+                        temp.getHospitalName(),
+                        temp.getBlType(),
+                        temp.getOrderQty()+orderQty,
+                        temp.getRackName(),
+                        temp.getDate(),
+                        temp.getTime()
+                );
+                obList.remove(rowNumber);
+                obList.add(newTm);
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Invalid Quantity").show();
+            }
         }
         tblOrder.setItems(obList);
-
-       /* try {
-            String newAvailabitlity=new OrderController().updateNewAvalibilityQty(cmbBloodRackName.getValue(),txtOrderQty.getText(),cmbBloodType.getValue());
-            txtAvailableQty.setText(newAvailabitlity);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }*/
-        //clearOne();
+        clearOne();
         cmbHospital.setDisable(true);
         txtName.setDisable(true);
     }
@@ -317,23 +282,14 @@ public class ManageOrderFormController {
             obList.remove(cartSelectedRowForRemove);
             enable();
             tblOrder.refresh();
-
         }
-        //clearOne();
-
     }
 
     public void placeOrderOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         cmbHospital.setDisable(false);
         txtName.setDisable(false);
-        //clear();
-        //tblOrder.getItems().clear();
 
-        //--------------------------------------------------------------
-
-        System.out.println(cmbBloodRackName.getValue());
         String rackId=new OrderController().getRackId(cmbBloodRackName.getValue());
-        System.out.println(obList.toString());
         ArrayList<OrderDetail>orderDetails=new ArrayList<>();
         for (CartTM tm:obList) {
             orderDetails.add(new OrderDetail(
@@ -344,7 +300,6 @@ public class ManageOrderFormController {
                     txtOrderTime.getText()
             ));
         }
-        System.out.println(orderDetails.toString());
 
         Order order=new Order(
                 txtOrderID.getText(),
@@ -355,19 +310,28 @@ public class ManageOrderFormController {
         );
         if (new OrderController().placeOrder(order)){
             new Alert(Alert.AlertType.CONFIRMATION, "Place Order").show();
+            clear();
+            tblOrder.getItems().clear();
             mail();
             setOrderId();
-            System.out.println("Selected rack name"+selectedRackName);
-            //setTxtAvailableQty(selectedRackName);
         }else {
             new Alert(Alert.AlertType.WARNING, "Try Again").show();
         }
+    }
 
+    private void clear(){
+        try {
+            txtOrderDate.clear();txtOrderTime.clear();cmbHospital.getSelectionModel().clearSelection();
+            txtName.clear();cmbBloodType.getSelectionModel().clearSelection();cmbBloodRackName.getSelectionModel().clearSelection();
+            txtAvailableQty.clear();txtOrderQty.clear();
+        }catch (Exception e){
 
-        //--------------------------------------------------------------
-
-
-
-
+        }
+    }
+    private void clearOne(){
+        try {
+            txtAvailableQty.clear();txtOrderQty.clear();
+        }catch (Exception e){
+        }
     }
 }

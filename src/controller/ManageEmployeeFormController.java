@@ -148,15 +148,14 @@ public class ManageEmployeeFormController {
             new Alert(Alert.AlertType.ERROR, "Try Again").show();
             clear();
         }
-
     }
 
     public void saveEmployeeOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+
         Employee e1 = new Employee(
                 cmbUserID.getValue().toString(),txtEmployeeID.getText(),txtEmployeeName.getText(),txtEmployeeAddress.getText(), txtEmployeeCity.getText(),
-                txtEmployeeType.getText(),cmbGender.getValue().toString(),txtEmployeePhoneNo.getText()
+                txtEmployeeType.getText(),cmbGender.getValue(),txtEmployeePhoneNo.getText()
         );
-        System.out.println(e1.getUserID());
         if(controller.saveEmployee(e1)) {
             new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
 

@@ -20,10 +20,10 @@
       <TableView fx:id="tblHospital" layoutX="140.0" layoutY="329.0" opacity="0.9" prefHeight="392.0" prefWidth="1334.0" stylesheets="@../styles/style.css">
          <columns>
             <TableColumn fx:id="colID" prefWidth="126.99996948242188" text="Id" />
-            <TableColumn fx:id="colName" prefWidth="185.00003051757812" text="Name" />
-            <TableColumn fx:id="colAddress" prefWidth="185.0" text="Address" />
-            <TableColumn fx:id="colCity" prefWidth="166.0" text="City" />
-            <TableColumn fx:id="colPhoneNo" prefWidth="184.0" text="Phone No" />
+            <TableColumn fx:id="colName" prefWidth="146.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="272.0" text="Address" />
+            <TableColumn fx:id="colCity" prefWidth="137.0" text="City" />
+            <TableColumn fx:id="colPhoneNo" prefWidth="166.0" text="Phone No" />
             <TableColumn fx:id="colEmail" prefWidth="208.0" text="Email" />
             <TableColumn fx:id="colWebSite" prefWidth="277.0" text="Web Site" />
          </columns>

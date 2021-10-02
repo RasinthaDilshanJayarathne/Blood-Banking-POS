@@ -3,16 +3,41 @@ package util.controller;
 
 import db.DbConnection;
 import model.BloodRack;
+import model.Employee;
 import model.Order;
 import model.OrderDetail;
+import view.tm.OrderDetailTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderController {
+    public static List<OrderDetailTM> searchOrderDetail(String value) throws SQLException, ClassNotFoundException {
+        Connection con = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = con.prepareStatement("SELECT * FROM `Order Detail` WHERE oId LIKE '%"+value+"%' or rId LIKE '%"+value+"%'");
+        ResultSet rst = pstm.executeQuery();
+
+        List<OrderDetailTM> detailTMList=new ArrayList<>();
+        while (rst.next()) {
+            detailTMList.add(new OrderDetailTM(rst.getString(1),rst.getString(2),rst.getString(3),rst.getInt(4),rst.getString(5)));
+        }
+        return detailTMList;
+    }
+
+    public static ArrayList<OrderDetail> setUpDailyBarChart() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT date,sum(qty),oId as qty from `Order Detail` group by date,oId order by qty desc");
+        ResultSet rst = stm.executeQuery();
+        ArrayList<OrderDetail> orderDetails = new ArrayList<>();
+        while (rst.next()) {
+            orderDetails.add(new OrderDetail(rst.getString(1),rst.getInt(2),rst.getString(3)));
+        }
+        return orderDetails;
+    }
+
     public String getOrderId() throws SQLException, ClassNotFoundException {
         ResultSet rst = DbConnection.getInstance()
                 .getConnection().prepareStatement(
@@ -101,6 +126,16 @@ public class OrderController {
         return null;
     }*/
 
+    public ArrayList<OrderDetailTM> getAllOrderDetail() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT o.oId,o.hId,od.rId,od.qty,od.date FROM Orders o INNER JOIN `Order detail` od ON o.oId=od.oId");
+        ResultSet rst = stm.executeQuery();
+        ArrayList<OrderDetailTM> orderDetails = new ArrayList<>();
+        while (rst.next()) {
+            orderDetails.add(new OrderDetailTM(rst.getString(1),rst.getString(2),rst.getString(3),rst.getInt(4),rst.getString(5)));
+        }
+        return orderDetails;
+    }
+
     public String getRackId(String rackName) throws SQLException, ClassNotFoundException {
         Connection con = DbConnection.getInstance().getConnection();
         PreparedStatement stm = con.prepareStatement(" SELECT r.rId FROM Rack r WHERE r.name =?");
@@ -114,6 +149,16 @@ public class OrderController {
     }
 
     public static ArrayList<OrderDetail> setUpDailyOrderBarChart() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT rId,sum(qty),date as qty from `Order detail` group by date,rId order by qty desc");
+        ResultSet rst = stm.executeQuery();
+        ArrayList<OrderDetail> orderDetails = new ArrayList<>();
+        while (rst.next()) {
+            orderDetails.add(new OrderDetail(rst.getString(1),rst.getInt(2),rst.getString(3)));
+        }
+        return orderDetails;
+    }
+
+    public static ArrayList<OrderDetail> setUpDailyOrderBarChartOne() throws SQLException, ClassNotFoundException {
         PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT rId,sum(qty) as qty from `Order detail` group by rId order by qty desc");
         ResultSet rst = stm.executeQuery();
         ArrayList<OrderDetail> orderDetails = new ArrayList<>();
@@ -135,9 +180,7 @@ public class OrderController {
             stm.setObject(4,newOrder.getTime());
 
             if (stm.executeUpdate()>0){
-                System.out.println("save Order");
                 if (saveOrderDetail(newOrder)){
-                    System.out.println("save order drtail");
                     con.commit();
                     return true;
                 }else {
@@ -162,6 +205,35 @@ public class OrderController {
         }
         return false;
     }
+    //--------------------------------------------------------------------
+
+    /*{
+        if (stm.executeUpdate()>0){
+            if (saveOrderDetail(newOrder)){
+                con.commit();
+                return true;
+            }else {
+                con.rollback();
+                return false;
+            }
+        }else {
+            con.rollback();
+            return false;
+        }
+
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }finally {
+        try {
+            con.setAutoCommit(true);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+        return false;
+    }*/
 
     private boolean saveOrderDetail(Order newOrder) throws SQLException, ClassNotFoundException {
         ArrayList<OrderDetail>orderDetails=newOrder.getOrderDetails();

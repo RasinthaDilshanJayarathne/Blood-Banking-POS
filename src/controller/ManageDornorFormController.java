@@ -135,14 +135,6 @@ public class ManageDornorFormController {
         colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colBloodID.setCellValueFactory(new PropertyValueFactory<>("blID"));
-
-       /* try {
-            setDonorToTable(controller.getAllDonor());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }*/
     }
 
     public void getBloodIds(String id){
@@ -187,28 +179,15 @@ public class ManageDornorFormController {
 
     public void saveDonorOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if (getDonorOne()==null){
-            System.out.println("AAAA");
             new Alert(Alert.AlertType.WARNING, "Try Again..").show();
         }else {
             //getDonor();
             Donor donorOne=getDonorOne();
             new ManageDonateFormController().getDonor(donorOne);
-            System.out.println("BBBBB");
-            System.out.println(getDonorOne().getBlID());
             new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
             loadTableWhenDonorAdded(new DonorController().getAllDonor());
 
         }
-
-        //getDonor();
-        /*if(controller.saveDonor(d1)) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Saved..").show();
-
-            setDonorToTable(controller.getAllDonor());
-            clear();
-        }else {
-            new Alert(Alert.AlertType.WARNING, "Try Again..").show();
-        }*/
     }
 
     public void loadTableWhenDonorAdded(ArrayList<Donor> allDonor) throws SQLException, ClassNotFoundException {
@@ -225,8 +204,6 @@ public class ManageDornorFormController {
         tblDonor.setItems(obList);
         new ManageDonateFormController().loadNewDonor(d1);
     }
-
-
 
     public Donor getDonorOne(){
         Donor d1 = new Donor(

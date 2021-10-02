@@ -42,7 +42,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="639.0" layoutY="728.0" mnemonicParsing="false" onAction="#printDonateDetailOnAction" opacity="0.9" prefHeight="46.0" prefWidth="191.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Print" textFill="WHITE">
+      <Button layoutX="639.0" layoutY="728.0" mnemonicParsing="false" onAction="#printDonateDetailOnAction" opacity="0.9" prefHeight="46.0" prefWidth="191.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="      Print" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -55,5 +55,10 @@
             <NumberAxis label="No Of Store Qty" prefHeight="601.0" prefWidth="60.0" side="LEFT" style="-fx-font-weight: bold;" />
          </yAxis>
       </BarChart>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="662.0" layoutY="733.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

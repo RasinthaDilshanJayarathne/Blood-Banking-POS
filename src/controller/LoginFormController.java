@@ -39,12 +39,12 @@ public class LoginFormController {
         String password=new String(Base64.getEncoder().encode(txtPassword.getText().getBytes()));
 
         User loginUser = new UserController().getLoginUser(userName, password);
-        if (loginUser!=null){
 
-            if (txtPassword.getText()!=password || txtUserName.getText()!=userName){
-                errorLabel.setText("Enterr correct Username or Password");
-                //new Alert(Alert.AlertType.WARNING, "Enterr correct username or passwod").showAndWait();
-            }
+        if (txtPassword.getText()!=password || txtUserName.getText()!=userName){
+            errorLabel.setText("Enterr correct Username or Password");
+            //new Alert(Alert.AlertType.WARNING, "Enterr correct username or passwod").showAndWait();
+        }
+        if (loginUser!=null){
 
             if (loginUser.getType().equals("Admin")){
                 URL resource = getClass().getResource("../view/AdminDashBoardForm.fxml");
@@ -59,9 +59,6 @@ public class LoginFormController {
                 window.setScene(new Scene(load));
 
             }
-        }else {
-            errorLabel.setText("Enter correct username or password");
-           // new Alert(Alert.AlertType.WARNING, "Enterr correct username or passwod").showAndWait();
         }
         clear();
     }

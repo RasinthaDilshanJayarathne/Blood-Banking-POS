@@ -35,24 +35,12 @@ public class DonationController {
 
     public String getAvailability(String rackId) throws SQLException, ClassNotFoundException {
         Connection con = DbConnection.getInstance().getConnection();
-        PreparedStatement stm = con.prepareStatement(" select totalQty from `donate detail` where rId=? ORDER BY totalQty ASC LIMIT 1;");
+        PreparedStatement stm = con.prepareStatement("  select totalQty-storeQty from rack where rId=?");
         stm.setObject(1,rackId);
 
         ResultSet rst = stm.executeQuery();
         if (rst.next()){
-            return rst.getString("totalQty");
-        }
-        return null;
-    }
-
-    public String getAvailability2(String rackId) throws SQLException, ClassNotFoundException {
-        Connection con = DbConnection.getInstance().getConnection();
-        PreparedStatement stm = con.prepareStatement(" select totalQty from Rack where rId=?");
-        stm.setObject(1,rackId);
-
-        ResultSet rst = stm.executeQuery();
-        if (rst.next()){
-            return rst.getString("totalQty");
+            return rst.getString("totalQty-storeQty");
         }
         return null;
     }
@@ -78,7 +66,7 @@ public class DonationController {
         return donateDetails;
     }
 
-    public XYChart.Series<String, Integer> setUpBarChartFromDatabase() throws SQLException, ClassNotFoundException {
+   /* public XYChart.Series<String, Integer> setUpBarChartFromDatabase() throws SQLException, ClassNotFoundException {
         XYChart.Series<String,Integer> series=new XYChart.Series<>();
         PreparedStatement statement = DbConnection.getInstance().getConnection().
                 prepareStatement("SELECT name,totalQty FROM rack");
@@ -88,7 +76,7 @@ public class DonationController {
             series.getData().add(new XYChart.Data<>(resultSet.getString(1),resultSet.getInt(2)));
         }
         return series;
-    }
+    }*/
 
     public boolean checkAvailabilityOrNot(String rackId) throws SQLException, ClassNotFoundException {
         PreparedStatement stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM `Donate Detail` WHERE rId=?");

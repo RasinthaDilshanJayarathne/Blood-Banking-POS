@@ -64,14 +64,12 @@ public class DashBoardDataController {
     }
 
     private void loadBarChartData(XYChart.Series series) throws SQLException, ClassNotFoundException {
-        ArrayList<OrderDetail> orderDetails = OrderController.setUpDailyOrderBarChart();
+        ArrayList<OrderDetail> orderDetails = OrderController.setUpDailyOrderBarChartOne();
         for (OrderDetail temp : orderDetails
         ) {
             series.getData().add(new XYChart.Data(String.valueOf(temp.getRackId()), temp.getQty()));
         }
     }
-
-
 
     public void setCount() throws SQLException, ClassNotFoundException {
         totDonors.setText(String.valueOf(new DonorController().donorCount()));

@@ -10,6 +10,14 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
+
+
+    public OrderDetail(String orderId, int qty, String orderDate) {
+        this.orderId = orderId;
+        this.qty = qty;
+        this.orderDate = orderDate;
+    }
+
     public OrderDetail(String rackId, int qty) {
         this.rackId = rackId;
         this.qty = qty;

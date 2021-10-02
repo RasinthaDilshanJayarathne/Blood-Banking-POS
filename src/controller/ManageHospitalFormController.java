@@ -169,7 +169,7 @@ public class ManageHospitalFormController {
         ObservableList<HospitalTM> obList = FXCollections.observableArrayList();
         allHospital.forEach(e->{
             obList.add(
-                    new HospitalTM(e.getHospitalId(),e.getName(),e.getEmail(),e.getAddress(),e.getCity(),e.getPhoneNo(),e.getEmail()));
+                    new HospitalTM(e.getHospitalId(),e.getName(),e.getEmail(),e.getAddress(),e.getCity(),e.getPhoneNo(),e.getWebsite()));
         });
         tblHospital.setItems(obList);
     }

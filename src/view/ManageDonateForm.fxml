@@ -22,9 +22,9 @@
         <columns>
           <TableColumn fx:id="colBloodType" prefWidth="67.0" text="Type" />
           <TableColumn fx:id="colRackNo" prefWidth="140.0" text="Rack Name" />
-            <TableColumn fx:id="colRackID" prefWidth="119.0" text="Rack ID" />
-            <TableColumn fx:id="colStore" prefWidth="145.0" text="Remain Space" />
-            <TableColumn fx:id="colQty" prefWidth="62.0" text="Qty" />
+            <TableColumn fx:id="colRackID" prefWidth="112.0" text="Rack ID" />
+            <TableColumn fx:id="colStore" prefWidth="92.0" text="Capacity" />
+            <TableColumn fx:id="colQty" prefWidth="122.0" text="Qty(packet)" />
         </columns>
       </TableView>
       <Button fx:id="btnDonate" layoutX="593.0" layoutY="738.0" mnemonicParsing="false" onAction="#donateOnAction" opacity="0.9" prefHeight="46.0" prefWidth="404.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="Donate" textFill="WHITE">
@@ -60,7 +60,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1077.0" layoutY="638.0" prefHeight="58.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="1096.0" layoutY="638.0" prefHeight="58.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
             <TextField fx:id="txtDonateQTY" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
                <font>
@@ -168,14 +168,14 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="937.0" layoutY="638.0" prefHeight="58.0" prefWidth="117.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+      <AnchorPane layoutX="937.0" layoutY="638.0" prefHeight="58.0" prefWidth="136.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
-            <TextField fx:id="txtAvailableQty" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+            <TextField fx:id="txtAvailableQty" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="Available">
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="Remain Qty">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

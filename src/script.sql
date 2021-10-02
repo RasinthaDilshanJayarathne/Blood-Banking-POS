@@ -155,6 +155,8 @@ FROM `donate detail` FULL OUTER JOIN `store detail` ON `donate detail`.blId = `s
 --------------------- Inner Join --------------------------
 SELECT * FROM rack INNER JOIN `store detail` ON rack.rId = `store detail`.rId;
 
+SELECT
+
 
 SELECT r.bloodGroup, r.rId, r.name, r.totalQty, dn.QtyOnHand
 FROM  Rack r INNER JOIN Blood b ON r.blId = b.blId INNER JOIN Donor d ON d.blId = b.blId INNER JOIN `Donate Detail` dn ON r.name = r.name;
@@ -229,3 +231,6 @@ FROM `donate detail`
 WHERE time=' 21:05 PM';
 GROUP BY date
 ORDER BY COUNT(QtyOnHand) DESC;
+
+
+SELECT o.oId,o.hId,od.rId,od.qty,od.date FROM Orders o INNER JOIN `Order detail` od ON o.oId=od.oId;

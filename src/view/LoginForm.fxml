@@ -41,7 +41,7 @@
             <FontAwesomeIconView glyphName="LOCK" size="30" />
          </graphic>
       </Button>
-      <Button alignment="CENTER" layoutX="1025.0" layoutY="702.0" mnemonicParsing="false" onAction="#exitOnAction" prefHeight="55.0" prefWidth="200.0" styleClass="button-cancle" stylesheets="@../styles/style.css" text="Cancle" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1025.0" layoutY="702.0" mnemonicParsing="false" onAction="#exitOnAction" prefHeight="55.0" prefWidth="200.0" styleClass="button-cancle" stylesheets="@../styles/style.css" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

@@ -5,23 +5,21 @@ import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
-import model.DonateDetail;
+import model.OrderDetail;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import util.controller.DonationController;
+import util.controller.OrderController;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DailyStoreDetailFormController {
+public class DailyOrderDetailFormController {
     public AnchorPane context;
-    public LineChart<?,?> dailyStoreChart;
+    public LineChart<?,?> dailyOrderChart;
 
-
-    public void initialize() throws IOException {
+    public void initialize(){
         loadChart();
     }
 
@@ -33,15 +31,6 @@ public class DailyStoreDetailFormController {
 
         try {
 
-            loadData(series);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-
             loadIStoreData(series2);
 
         } catch (SQLException e) {
@@ -50,30 +39,21 @@ public class DailyStoreDetailFormController {
             e.printStackTrace();
         }
 
-        dailyStoreChart.getData().addAll(series,series2);
+        dailyOrderChart.getData().addAll(series,series2);
     }
 
     private void loadIStoreData(XYChart.Series series2) throws SQLException, ClassNotFoundException {
-        ArrayList<DonateDetail> dalyStoreData = DonationController.setUpDailyBarChart();
+        ArrayList<OrderDetail> donateDetails = OrderController.setUpDailyOrderBarChart();
         //System.out.println(dalyItemIncomeData);
-        for (DonateDetail temp : dalyStoreData
+        for (OrderDetail temp : donateDetails
         ) {
-            series2.getData().add(new XYChart.Data(String.valueOf(temp.getDate()), temp.getTotalQty(),temp.getrID()));
+            series2.getData().add(new XYChart.Data(String.valueOf(temp.getOrderDate()), temp.getQty()));
         }
     }
 
-    private void loadData(XYChart.Series series) throws SQLException, ClassNotFoundException {
-        ArrayList<DonateDetail> dalyStoreData1 = DonationController.setUpDailyBarChart();
-        //System.out.println(dalyIncomeData);
-        for (DonateDetail temp : dalyStoreData1
-        ) {
-            series.getData().add(new XYChart.Data(String.valueOf(temp.getDate()), temp.getQtyOnHand(),temp.getrID()));
-        }
-    }
-
-    public void printDailyStoreDetailOnAction(ActionEvent actionEvent) {
+    public void printDailyOrderDetailOnAction(ActionEvent actionEvent) {
         try {
-            JasperDesign design = JRXmlLoader.load(this.getClass().getResourceAsStream("/view/jasperReport/DailyStoreDetail_Report.jrxml"));
+            JasperDesign design = JRXmlLoader.load(this.getClass().getResourceAsStream("/view/jasperReport/DailyOrderDetailReport.jrxml"));
             JasperReport compileReport = JasperCompileManager.compileReport(design);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, null, DbConnection.getInstance().getConnection());

@@ -26,8 +26,8 @@
             <TableColumn fx:id="colRackID" prefWidth="129.00003051757812" text="Rack Id" />
             <TableColumn fx:id="colName" prefWidth="201.0" text="Rack Name" />
             <TableColumn fx:id="colType" prefWidth="147.0" text="Blood Type" />
-            <TableColumn fx:id="colQTY" prefWidth="147.0" text="Quantity" />
-            <TableColumn fx:id="colStoreQty" prefWidth="128.0" text="Store Qty" />
+            <TableColumn fx:id="colQTY" prefWidth="147.0" text="Capacity" />
+            <TableColumn fx:id="colStoreQty" prefWidth="128.0" text="Qty(packet)" />
          </columns>
       </TableView>
       <AnchorPane layoutX="147.0" layoutY="213.0" opacity="0.9" prefHeight="52.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">

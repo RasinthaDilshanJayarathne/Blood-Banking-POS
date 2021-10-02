@@ -24,7 +24,7 @@
           <TableColumn fx:id="colName" prefWidth="236.0" text="Name" />
             <TableColumn fx:id="colBType" prefWidth="195.0" text="Blood Type" />
             <TableColumn fx:id="colRackName" prefWidth="201.0" text="Rack Name" />
-            <TableColumn fx:id="colOQty" prefWidth="214.0" text="Order Qty" />
+            <TableColumn fx:id="colOQty" prefWidth="214.0" text="Order Qty(Packet)" />
             <TableColumn fx:id="colDate" prefWidth="211.0" text="Order Date" />
             <TableColumn fx:id="colTime" prefWidth="193.0" text="Order Time" />
         </columns>
@@ -136,7 +136,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtOrderQty" layoutX="11.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="186.0" style="-fx-background-color: white;" styleClass="textField">
+            <TextField fx:id="txtOrderQty" layoutX="11.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="256.0" promptText="00" style="-fx-background-color: white;" styleClass="textField">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -68,16 +69,16 @@
       </AnchorPane>
       <AnchorPane layoutX="919.0" layoutY="48.0" prefHeight="58.0" prefWidth="253.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
          <children>
-            <TextField fx:id="txtUserPassword" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="217.0" promptText="*******" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </TextField>
             <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="Password">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <PasswordField fx:id="txtUserPassword" layoutX="7.0" layoutY="13.0" onKeyReleased="#textFields_Key_Released" promptText="*********" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </PasswordField>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="615.0" layoutY="48.0" prefHeight="58.0" prefWidth="253.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">

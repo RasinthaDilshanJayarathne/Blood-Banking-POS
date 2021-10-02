@@ -22,7 +22,7 @@ import java.util.Properties;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
-public class SendMailFormController extends ManageDornorFormController{
+public class SendMailFormController extends ManageDonateFormController{
     public TextField txtSubject;
     public TextField txtToEmail;
     public Button btnSending;
@@ -99,15 +99,15 @@ public class SendMailFormController extends ManageDornorFormController{
     }
 
     public void searchOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-       /* String donorNic =;
-        System.out.println(txtNIC);
+        String donorNic = txtDonID.getText();
+        System.out.println(txtDonID.getText());
 
         Donor d1= new DonorController().getDonor(donorNic);
         if (d1==null) {
             new Alert(Alert.AlertType.WARNING, "Empty Result Set").show();
         } else {
             setData(d1);
-        }*/
+        }
     }
 
     private void setData(Donor d1) {
