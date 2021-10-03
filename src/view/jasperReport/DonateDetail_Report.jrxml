@@ -53,10 +53,6 @@
 	</background>
 	<title>
 		<band height="198" splitType="Stretch">
-			<image>
-				<reportElement x="204" y="-20" width="147" height="140" uuid="56818ebc-cafb-43a9-9677-4324c7ad9836"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/New folder/blood-donation-logo_23-2147506524.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="109" width="555" height="30" forecolor="#FC544E" uuid="39069d63-551c-4dc7-92ee-1ba042b08cba"/>
 				<textElement textAlignment="Center">
@@ -72,6 +68,10 @@
 				<reportElement x="316" y="140" width="100" height="30" uuid="9777b229-c77e-411b-964e-43d15dad51a8"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="200" y="-27" width="200" height="138" uuid="bcd143a4-b2ca-4599-b6d8-2999338d5376"/>
+				<imageExpression><![CDATA["D:/Photos/Blood Bnking/New folder/blood-donation-logo_23-2147506524.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
