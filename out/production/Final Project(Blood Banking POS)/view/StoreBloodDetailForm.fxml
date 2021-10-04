@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white;" styleClass="reception-task" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StoreBloodDetailFormController">
+   <children>
+      <ImageView fitHeight="798.0" fitWidth="1283.0" layoutX="278.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/storeDetails.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblStoreDetail" layoutX="23.0" layoutY="136.0" opacity="0.9" prefHeight="568.0" prefWidth="808.0">
+        <columns>
+            <TableColumn fx:id="colRackID" prefWidth="176.00003051757812" text="Rack Id" />
+            <TableColumn fx:id="colRackName" prefWidth="250.00003051757812" text="Rack Name" />
+            <TableColumn fx:id="colBloodType" prefWidth="179.0" text="Blood Type" />
+            <TableColumn fx:id="colQty" prefWidth="202.0" text="Store Qty" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="175.0" layoutY="66.0" opacity="0.9" prefHeight="52.0" prefWidth="504.0" style="-fx-background-color: white;" styleClass="textPane">
+         <children>
+            <TextField fx:id="txtSearch" layoutX="13.0" layoutY="9.0" onAction="#searchOnAction" prefHeight="39.0" prefWidth="477.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Search">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button layoutX="639.0" layoutY="728.0" mnemonicParsing="false" onAction="#printDonateDetailOnAction" opacity="0.9" prefHeight="46.0" prefWidth="191.0" styleClass="print-btn" stylesheets="@../styles/style.css" text="      Print" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <BarChart fx:id="donateBloodDetailBarChart" layoutX="868.0" layoutY="39.0" opacity="0.8" prefHeight="668.0" prefWidth="761.0" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: #c3ee75;" title="Store Blood">
+         <xAxis>
+            <CategoryAxis label="Rack ID" prefHeight="61.0" prefWidth="649.0" side="BOTTOM" style="-fx-font-weight: bold;" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="No Of Store Qty" prefHeight="601.0" prefWidth="60.0" side="LEFT" style="-fx-font-weight: bold;" />
+         </yAxis>
+      </BarChart>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="662.0" layoutY="733.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/print.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

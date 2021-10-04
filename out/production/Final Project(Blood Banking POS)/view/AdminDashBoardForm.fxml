@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="context" prefHeight="900.0" prefWidth="1750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminDashBoardFormController">
+   <children>
+      <AnchorPane fx:id="loadContext" layoutX="101.0" layoutY="96.0" prefHeight="798.0" prefWidth="1647.0" style="-fx-background-radius: 15; -fx-border-radius: 15;">
+         <children>
+            <ImageView fitHeight="838.0" fitWidth="1164.0" layoutX="156.0" layoutY="3.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/dashboard.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="3.0" layoutY="5.0" prefHeight="81.0" prefWidth="1745.0" style="-fx-background-color: #ff7675; -fx-background-radius: 15; -fx-border-radius: 15;">
+         <children>
+            <Label fx:id="menuBack" layoutX="20.0" layoutY="15.0" prefHeight="52.0" prefWidth="500.0" text="   Menu" textFill="#1a0000">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="LIST" size="50" />
+               </graphic>
+            </Label>
+            <Label fx:id="menu" layoutX="20.0" layoutY="15.0" prefHeight="52.0" prefWidth="765.0" text="   Menu" textFill="#1a0000">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="LIST" size="50" />
+               </graphic>
+            </Label>
+            <Label fx:id="lblTime" alignment="CENTER" layoutX="1283.0" layoutY="7.0" prefHeight="45.0" prefWidth="228.0" text="hh:mm:ss">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" alignment="CENTER" layoutX="1320.0" layoutY="37.0" prefHeight="43.0" prefWidth="160.0" text="yyyy-MM-dd">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <MenuButton layoutX="1578.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="65.0" styleClass="setting-btn" stylesheets="@../styles/style.css">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#helpOnAction" text="    Help">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/help.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <accelerator>
+                        <KeyCodeCombination alt="ANY" code="H" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#logOutOnAction" text="   Log Out">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="POWER_OFF" size="25" />
+                     </graphic>
+                     <accelerator>
+                        <KeyCodeCombination alt="ANY" code="L" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+               <graphic>
+                  <FontAwesomeIconView glyphName="COG" size="50" />
+               </graphic>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="slider" layoutX="101.0" layoutY="96.0" prefHeight="798.0" prefWidth="255.0" style="-fx-background-color: #ef4c4b; -fx-background-radius: 15; -fx-border-radius: 15;">
+         <children>
+            <VBox layoutY="16.0" prefHeight="763.0" prefWidth="255.0">
+               <children>
+                  <JFXButton buttonType="RAISED" onAction="#dashboardOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#usersOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="User" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#manageBloodOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Blood" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#donateOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Donate" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#manageDonorOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Donor" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#manageBloodRackOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Blood Rack" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#viewHospitalOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Hospital" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#manageOrderOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Order" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Report" textFill="WHITE">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#donateReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Order Report          ">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TH" size="20" />
+                           </graphic></MenuItem>
+                      <MenuItem mnemonicParsing="false" onAction="#storeReportOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="    Store Report         ">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="TH" size="20" />
+                           </graphic></MenuItem>
+                    </items>
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="View Details" textFill="WHITE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#storeDetailOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="   Donate Detail           ">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FILE" size="20" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#orderDetailOnAction" style="-fx-font-size: 20; -fx-font-weight: bold;" text="   Order Detail">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FILE" size="20" />
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </MenuButton>
+                  <JFXButton buttonType="RAISED" onAction="#employeeOnAction" prefHeight="62.0" prefWidth="255.0" styleClass="dashboard-btn" stylesheets="@../styles/style.css" text="Employee" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="slider1" layoutX="3.0" layoutY="96.0" prefHeight="798.0" prefWidth="45.0" style="-fx-background-color: #ff7675; -fx-background-radius: 15; -fx-border-radius: 15;">
+         <children>
+            <VBox layoutY="17.0" prefHeight="763.0" prefWidth="94.0">
+               <children>
+                  <FontAwesomeIconView glyphName="DASHBOARD" size="50">
+                     <VBox.margin>
+                        <Insets left="20.0" top="-2.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="USER" size="50">
+                     <VBox.margin>
+                        <Insets left="26.0" top="10.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="TINT" size="50">
+                     <VBox.margin>
+                        <Insets left="30.0" top="20.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/employee.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="16.0" top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <FontAwesomeIconView glyphName="USERS" size="50">
+                     <VBox.margin>
+                        <Insets left="17.0" top="19.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/bloodRack.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="15.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/hospital.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="15.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/manageOrder.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="14.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/report.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="11.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/allDetail.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="13.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="62.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/employee.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="16.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblClose" layoutX="1688.0" layoutY="19.0" prefHeight="50.0" prefWidth="50.0">
+         <graphic>
+            <FontAwesomeIconView fill="#e12323" glyphName="TIMES" size="50" />
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>

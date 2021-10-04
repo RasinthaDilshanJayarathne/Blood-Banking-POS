@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="798.0" prefWidth="1647.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SystemUserFormController">
+   <children>
+      <ImageView fitHeight="848.0" fitWidth="1163.0" layoutX="182.0" layoutY="3.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/SystemUser.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="161.0" layoutY="51.0" prefHeight="58.0" prefWidth="226.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtUserID" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="205.0" promptText="U00-0001" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="User ID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1224.0" layoutY="51.0" prefHeight="58.0" prefWidth="253.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtUserType" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="217.0" promptText="Reception" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="User Type">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblUser" layoutX="330.0" layoutY="342.0" opacity="0.9" prefHeight="399.0" prefWidth="987.0" styleClass="table-row-cell" stylesheets="@../styles/style.css">
+         <columns>
+            <TableColumn fx:id="colUserID" prefWidth="296.0000305175781" text="User ID" />
+            <TableColumn fx:id="colName" prefWidth="368.0" text="Name" />
+            <TableColumn fx:id="colUserType" prefWidth="321.0" text="User Type" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="555.0" layoutY="277.0" opacity="0.9" prefHeight="52.0" prefWidth="577.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtSearchUser" layoutX="13.0" layoutY="9.0" onAction="#searchOnAction" prefHeight="39.0" prefWidth="540.0" style="-fx-background-color: white;" styleClass="textField">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" text="Search User">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="919.0" layoutY="48.0" prefHeight="58.0" prefWidth="253.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="Password">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtUserPassword" layoutX="7.0" layoutY="13.0" onKeyReleased="#textFields_Key_Released" promptText="*********" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="615.0" layoutY="48.0" prefHeight="58.0" prefWidth="253.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" styleClass="textPane" stylesheets="@../styles/style.css">
+         <children>
+            <TextField fx:id="txtUserName" layoutX="12.0" layoutY="12.0" onKeyReleased="#textFields_Key_Released" prefHeight="39.0" prefWidth="217.0" promptText="nimal" style="-fx-background-color: white;" styleClass="textField" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label layoutX="2.0" layoutY="-13.0" style="-fx-background-color: white;" styleClass="textLabel" stylesheets="@../styles/style.css" text="User Name">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button alignment="CENTER_RIGHT" layoutX="434.0" layoutY="48.0" mnemonicParsing="false" onAction="#searchUserOnAction" opacity="0.9" prefHeight="60.0" prefWidth="130.0" styleClass="search-btn" stylesheets="@../styles/style.css" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDelete" alignment="CENTER_RIGHT" layoutX="1347.0" layoutY="156.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn2" stylesheets="@../styles/style.css" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdd" alignment="CENTER" layoutX="1067.0" layoutY="155.0" mnemonicParsing="false" onAction="#saveDonorOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn1" stylesheets="@../styles/style.css" text="         Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="1207.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn" stylesheets="@../styles/style.css" text="    Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="927.0" layoutY="155.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="60.0" prefWidth="130.0" styleClass="manageBlood-btn3" stylesheets="@../styles/style.css" text="       Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1212.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/update.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1079.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="939.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="1358.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="441.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/button/search.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
